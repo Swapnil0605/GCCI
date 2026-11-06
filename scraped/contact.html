@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GCCI</title>
+  <link rel="icon" type="image/png" href="public/favicon.jpg">
+  <link rel="stylesheet" href="contact.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<style>
+  
+ /* ============================================
+           NAVIGATION BAR
+           ============================================ */
+header {
+  position: relative;
+  padding: 10px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  z-index: 99999;
+}
+
+.logo-img {
+  width: 250px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  z-index: 99998;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #000;
+  font-size: 17px;
+  font-family: "Roboto", sans-serif;
+  z-index: 99998;
+}
+
+.nav-links a:hover {
+  color: blue;
+}
+
+.nav-buttons {
+  display: flex;
+}
+
+/* DROPDOWN DESKTOP */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 40px;
+  left: -40px;
+  background: #111;
+  display: none;
+  flex-direction: column;
+  z-index: 10000;
+}
+
+.dropdown-menu a {
+  padding: 10px 20px;
+     color: rgba(255, 255, 255, 0.8);
+     text-decoration: none;
+     font-size: 15px;
+     white-space: nowrap;
+}
+.dropdown-menu a:hover {
+     background: rgb(94, 153, 241);
+     color: #000;
+ }
+
+.dropdown:hover .dropdown-menu {
+  display: flex;
+}
+
+/* BUTTON */
+.btn-primary {
+  background: #0a3d91;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+}
+
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.close-menu {
+  display: none;
+  font-size: 24px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.arrow {
+  font-size: 12px;
+  margin-left: auto;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    z-index: 9999;
+    justify-content: space-between;
+     padding: 10px 12px;
+  }
+
+  body {
+    padding-top: 90px;
+  }
+
+   .logo-img {
+    width: 250px;
+    height: auto;
+  }
+
+  .nav-links a {
+  text-decoration: none;
+  color: #000;
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  margin-left: 10px;
+}
+
+  .hamburger {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;          /* 👈 IMPORTANT */
+    height: 44px;
+
+    font-size: 30px;
+    line-height: 1;
+    color: #000;
+
+    margin-left: auto;   /* 👈 PUSH TO RIGHT */
+    cursor: pointer;
+    margin-right: 20px
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    height: 100vh;
+    background: #fff;
+    flex-direction: column;
+    padding: 80px 20px;
+    gap: 18px;
+    transition: 0.4s;
+    z-index: 9998;
+    display: none;
+  }
+
+  .nav-links.show {
+    display: flex;
+    left: 0;
+  }
+
+  .nav-buttons {
+    display: none;
+  }
+
+  .close-menu {
+    display: block;
+  }
+
+  /* MOBILE DROPDOWN */
+  .dropdown-menu {
+    position: static;
+    background: #f5f5f5;
+    display: none;
+    padding-left: 15px;
+  }
+
+  .dropdown-menu.show {
+    display: block;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: none;
+  }
+
+  .dropdown-toggle {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 769px) {
+  .arrow,
+  .mobile-contact {
+    display: none;
+  }
+}
+
+
+</style>
+</head>
+<body>
+
+  <!-- Navbar Section -->
+
+<header>
+  <div class="logo">
+    <a href="index.html">
+      <img src="public/new_logo_gcci.jpg" alt="Logo" class="logo-img">
+    </a>
+  </div>
+
+  <!-- HAMBURGER -->
+  <div class="hamburger" id="hamburger">☰</div>
+
+  <nav class="nav-links" id="mobileMenu">
+
+    <!-- CLOSE BUTTON -->
+    <div class="close-menu" id="closeMenu">✕</div>
+
+    <a href="index.html">Home</a>
+
+    <div class="dropdown">
+      <a href="#" class="dropdown-toggle">
+        About Us 
+      </a>
+      <div class="dropdown-menu">
+        <a href="about.html">Company History</a>
+        <a href="directors.html">Our Director</a>
+        <a href="jounery.html">Our Journey</a>
+        <a href="awards.html">Awards And Certifications</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <a href="#" class="dropdown-toggle">
+        Services 
+      </a>
+      <div class="dropdown-menu">
+        <a href="service1.html">Advocacy / Assessment / Capability Development / Recognition of Competitiveness</a>
+        <a href="service2.html">Liaison Global Expertise Technology Support / Industry Automation</a>
+        <a href="service3.html">Maintenance Software / Support IT / IoT / AI</a>
+        <a href="service4.html">TPM Software (Subscription Model)</a>
+      </div>
+    </div>
+
+    <a href="activity.html">Activity</a>
+    <a href="news.html">News</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="training_program.html">Training Program</a>
+
+    <!-- MOBILE CONTACT -->
+    <a href="contact.html" class="mobile-contact">Contact Us</a>
+  </nav>
+
+  <!-- DESKTOP BUTTON -->
+  <div class="nav-buttons">
+    <a href="contact.html" class="btn btn-primary">Contact us</a>
+  </div>
+</header>
+
+<script>
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const closeMenu = document.getElementById("closeMenu");
+
+  hamburger.onclick = () => mobileMenu.classList.add("show");
+  closeMenu.onclick = () => mobileMenu.classList.remove("show");
+
+  document.querySelectorAll(".dropdown-toggle").forEach(toggle => {
+  toggle.addEventListener("click", function () {
+
+    if (window.innerWidth <= 768) {
+      // ✅ mobile: close menu first, then allow navigation
+      mobileMenu.classList.remove("show");
+      return;
+    }
+
+    // desktop only
+    event.preventDefault();
+    this.nextElementSibling.classList.toggle("show");
+  });
+});
+</script>
+
+<!-- Hero Section -->
+<section class="about-section">
+  <div class="about-overlay">
+    <div class="about-text">
+      <h1>Contact Us</h1>
+      <p>
+        Get in Touch with the GCCI Team for Expert Guidance and Support
+      </p>
+      <!-- <a href="index.html" class="about-link">
+        Back to Home
+        <i data-lucide="arrow-right" class="arrow-icon"></i>
+      </a> -->
+    </div>
+  </div>
+</section>
+
+     <!-- <header class="hero">
+       
+        <div class="hero-bg">
+            <img src="public/contact_hero.webp" alt="Contact Us - Diamond Home Decor">
+            <div class="hero-overlay"></div>
+        </div>
+
+      
+        <div class="hero-content reveal">
+            <h1 class="hero-title">
+                Contact Us <br>
+            </h1>
+            <p class="hero-desc">
+                Get in Touch with the GCCI Team for Expert Guidance and Support
+            </p>
+        </div>
+    </header> -->
+
+    <!-- Form Section -->
+
+<section class="contact-section">
+  <div class="contact-wrapper">
+
+    <!-- LEFT CONTENT -->
+    <div class="contact-left">
+      <span class="subtitle">START A CONVERSATION</span>
+      <h1>Let's Create Your<br><span>Masterpiece</span></h1>
+      <p>
+        Whether you have a distinct vision or need guidance discovering
+        your style, our team is ready to assist.
+      </p>
+
+      <div class="info">
+        <div class="info-item">
+          <span class="icon">📍</span>
+          <div>
+            <h4>ADDRESS</h4>
+            <p>
+              Shop No. LG-K-02, S. No. 588/2B, Raviraj Cru Premises,
+              Bibwewadi,<br/> Market Yard, Pune, Maharashtra, India.
+            </p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <span class="icon">📞</span>
+          <div>
+            <h4>PHONE</h4>
+            <p>+91 7620121069</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <span class="icon">✉️</span>
+          <div>
+            <h4>EMAIL</h4>
+            <p>gcci-enquiry@gcci-india.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIVIDER -->
+    <div class="divider"></div>
+
+    <!-- RIGHT FORM -->
+    <div class="contact-right">
+      <form 
+  id="contactForm"
+  action="https://formsubmit.co/gcci.training.enquiries@gmail.com"
+  method="POST"
+>
+  <!-- FormSubmit settings -->
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_template" value="table">
+  <input type="hidden" name="_subject" value="New Contact Enquiry - GCCI">
+
+  <div class="form-row">
+    <div class="form-group">
+      <label>COMPANY NAME</label>
+      <input type="text" name="company_name" placeholder="Company Name" required />
+    </div>
+    <div class="form-group">
+      <label>NAME</label>
+      <input type="text" name="name" placeholder="Your Name" required />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label>EMAIL ADDRESS</label>
+      <input type="email" name="email" placeholder="jane@example.com" required />
+    </div>
+    <div class="form-group">
+      <label>PHONE NUMBER</label>
+      <input type="tel" name="phone" placeholder="+91 98765 43210" required />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label>COUNTRY</label>
+      <input type="text" name="country" placeholder="India" />
+    </div>
+    <div class="form-group">
+      <label>ADDRESS</label>
+      <input type="text" name="address" placeholder="Full Address" />
+    </div>
+  </div>
+
+  <div class="form-group full">
+    <label>MESSAGE</label>
+    <textarea name="message" placeholder="Tell us about your project..." required></textarea>
+  </div>
+
+  <button type="submit">SEND MESSAGE</button>
+</form>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+document.getElementById('contactForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  fetch(this.action, {
+    method: "POST",
+    body: new FormData(this)
+  })
+  .then(response => {
+    if (response.ok) {
+      alert("✅ Thank you! Your message has been sent.");
+      this.reset();
+    } else {
+      alert("❌ Something went wrong. Please try again.");
+    }
+  })
+  .catch(() => {
+    alert("❌ Network error. Please try later.");
+  });
+});
+</script>
+
+
+<!-- Google Maps Section -->
+<section class="section bg-white" style="padding-top: 3rem; padding-bottom: 4rem; font-family:'Montserrat', sans-serif;">
+    <div class="container">
+        <div class="map-container"
+            style="border-radius: 8px; overflow: hidden; box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.289627129939!2d73.86405147500084!3d18.495866882593785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c03d168c7b25%3A0xf4c0ed2db06d4f7a!2sRaviraj%20Cru%20Premises%2C%20Bibwewadi%2C%20Pune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1696780987654!5m2!1sen!2sin"
+                width="100%" height="450" style="border:0; display: block;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+</section>
+
+
+  <!-- Footer -->
+<div id="footer-container"></div>
+<script src="footer.js"></script>  
+
+</body>
+</html>

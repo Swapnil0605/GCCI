@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GCCI</title>
+  <link rel="icon" type="image/png" href="public/favicon.jpg">
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+  
+ /* ============================================
+           NAVIGATION BAR
+           ============================================ */
+header {
+  position: relative;
+  padding: 10px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  z-index: 100;
+}
+
+.logo-img {
+  width: 250px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #000;
+  font-size: 17px;
+  font-family: "Roboto", sans-serif;
+}
+
+.nav-links a:hover {
+  color: blue;
+}
+
+.nav-buttons {
+  display: flex;
+}
+
+/* DROPDOWN DESKTOP */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 25px;
+  left: -40px;
+  background: #111;
+  display: none;
+  flex-direction: column;
+  z-index: 200;
+}
+
+.dropdown-menu a {
+  padding: 10px 20px;
+     color: rgba(255, 255, 255, 0.8);
+     text-decoration: none;
+     font-size: 15px;
+     white-space: nowrap;
+}
+.dropdown-menu a:hover {
+     background: rgb(94, 153, 241);
+     color: #000;
+ }
+
+.dropdown:hover .dropdown-menu {
+  display: flex;
+}
+
+/* BUTTON */
+.btn-primary {
+  background: #0a3d91;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+}
+
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.close-menu {
+  display: none;
+  font-size: 24px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.arrow {
+  font-size: 12px;
+  margin-left: auto;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    z-index: 9999;
+    justify-content: space-between;
+     padding: 10px 12px;
+  }
+
+  body {
+    padding-top: 90px;
+  }
+
+   .logo-img {
+    width: 250px;
+    height: auto;
+  }
+
+  .nav-links a {
+  text-decoration: none;
+  color: #000;
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  margin-left: 10px;
+}
+
+
+  .hamburger {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;          /* 👈 IMPORTANT */
+    height: 44px;
+
+    font-size: 30px;
+    line-height: 1;
+    color: #000;
+
+    margin-left: auto;   /* 👈 PUSH TO RIGHT */
+    cursor: pointer;
+    margin-right: 20px
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    height: 100vh;
+    background: #fff;
+    flex-direction: column;
+    padding: 80px 20px;
+    gap: 18px;
+    transition: 0.4s;
+    z-index: 9998;
+    display: none;
+  }
+
+  .nav-links.show {
+    display: flex;
+    left: 0;
+  }
+
+  .nav-buttons {
+    display: none;
+  }
+
+  .close-menu {
+    display: block;
+  }
+
+  /* MOBILE DROPDOWN */
+  .dropdown-menu {
+    position: static;
+    background: #f5f5f5;
+    display: none;
+    padding-left: 15px;
+  }
+
+  .dropdown-menu.show {
+    display: block;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: none;
+  }
+
+  .dropdown-toggle {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 769px) {
+  .arrow,
+  .mobile-contact {
+    display: none;
+  }
+}
+
+
+</style>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Cinzel:wght@400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
+/* Hero Service Section */
+
+.about-section {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  background-image: url("public/service_hero_2.jpg"); /* Replace with your image name */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+/* Dark overlay on left side */
+.about-overlay {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0, 51, 153, 0.55) 10%, rgba(0, 51, 153, 0.2) 50%);
+  display: flex;
+  align-items: center;
+  padding-left: 100px;
+}
+
+.about-text {
+  max-width: 500px;
+  color: white;
+  animation: fadeInLeft 1.2s ease forwards;
+}
+
+.about-text h1 {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  font-family: "Saira", sans-serif;
+}
+
+.about-text p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #fdfcfc;
+  margin-bottom: 25px;
+  font-family: "Roboto", sans-serif;
+}
+
+.about-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  color: #ffffff;
+  text-decoration: none;
+  border: 1px solid #ffffff;
+  padding: 10px 20px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  font-family: "Roboto", sans-serif;
+}
+
+.about-link:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+.arrow-icon {
+  transition: transform 0.3s ease;
+}
+
+.about-link:hover .arrow-icon {
+  transform: translateX(5px);
+}
+
+/* Animation */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Extra small devices (phones, portrait) */
+@media (max-width: 320px) { 
+  .about-section {
+    height: 300px;
+  }
+
+  .about-overlay {
+    padding-left: 15px;
+    background: rgba(0, 0, 0, 0.6); /* Stronger overlay */
+  }
+
+  .about-text h1 {
+    font-size: 1.6rem;
+  }
+
+  .about-text p {
+    display: none;
+  }
+
+  .about-link {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Small devices (phones) */
+@media (max-width: 480px) { 
+  .about-section {
+    height: 320px;
+  }
+
+  .about-overlay {
+    padding-left: 25px;
+  }
+
+  .about-text h1 {
+    font-size: 1.9rem;
+  }
+
+  .about-text p {
+    display: none;
+  }
+
+  .about-link {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Medium devices (phones) */
+@media (max-width: 576px) { 
+  .about-section {
+    height: 350px;
+  }
+
+  .about-overlay {
+    padding-left: 30px;
+  }
+
+  .about-text h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Large phones */
+@media (max-width: 768px) { 
+  .about-section {
+    height: 380px;
+  }
+
+  .about-overlay {
+    padding-left: 35px;
+    background: linear-gradient(to right, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.2) 100%);
+  }
+
+  .about-text h1 {
+    font-size: 2.2rem;
+  }
+
+  .about-text p {
+    font-size: 0.9rem;
+  }
+
+  .about-link {
+    padding: 10px 18px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Tablets */
+@media (max-width: 992px) { 
+  .about-section {
+    height: 420px;
+  }
+
+  .about-overlay {
+    padding-left: 20px;
+  }
+
+  .about-text h1 {
+    font-size: 2.4rem;
+  }
+}
+
+/* 1152px */
+@media (max-width: 1152px) { 
+  .about-text h1 {
+    font-size: 2.6rem;
+  }
+}
+
+/* 1440px */
+@media (max-width: 1440px) { 
+  .about-section {
+    height: 65vh;
+  }
+}
+
+
+
+/* Services Section */
+
+.services-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+  padding: 60px 0;
+}
+
+.section-title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  color: #222;
+}
+
+.services-box-wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.service-box {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: 600;
+  border: 2px solid transparent;
+  transition: all 0.4s ease;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  font-family: "Saira", sans-serif;
+}
+
+.service-box:hover {
+  transform: translateY(-6px);
+  border-color: rgb(10, 56, 124);
+  color: rgb(10, 56, 124);
+}
+
+.service-box.active {
+  background: rgb(10, 56, 124);
+  color: #fff;
+  border-color: #005fcc;
+  transform: translateY(-6px);
+}
+
+
+.service-info {
+  animation: fadeIn 0.4s linear;
+  background: #f9fbff;
+  padding: 30px;
+  border-radius: 16px;
+  text-align: left;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.service-info h3 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  font-family: "Saira", sans-serif;
+}
+
+.service-info p {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-family: "Roboto", sans-serif;
+}
+
+.service-images {
+  display: flex;
+  gap: 15px;
+}
+
+.service-images img {
+  width: 100%;
+  max-width: 260px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.service-images img:hover {
+  transform: scale(1.05);
+}
+
+.sub-services-list {
+  margin-top: 15px;
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+
+.sub-services-list li {
+  font-size: 17px;
+  color: #333;
+  margin-bottom: 8px;
+  line-height: 1.5;
+  position: relative;
+  font-family: "Roboto", sans-serif;
+}
+
+.sub-services-list li::before {
+  content: "• ";
+  font-size: 22px;
+  color: #007bff;
+  font-weight: bold;
+  position: absolute;
+  left: -18px;
+  top: 0;
+}
+
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Tablets (max-width: 992px) */
+/* 👉 2 boxes per row for Tablets & Mobile */
+@media (max-width: 992px) {
+  .services-box-wrapper {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px;
+  }
+}
+
+/* Large Phones (max-width: 768px) */
+@media (max-width: 768px) {
+  .services-box-wrapper {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 18px;
+  }
+
+  .service-box {
+    font-size: 18px;
+    padding: 20px;
+  }
+}
+
+/* Medium Phones (max-width: 576px) */
+@media (max-width: 576px) {
+  .services-box-wrapper {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Small Phones (max-width: 480px) */
+@media (max-width: 480px) {
+  .services-box-wrapper {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .service-box {
+    font-size: 16px;
+    padding: 18px;
+  }
+}
+
+/* Extra Small Phones (max-width: 320px) */
+@media (max-width: 320px) {
+  .services-box-wrapper {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px;
+  }
+
+  .service-box {
+    font-size: 15px;
+    padding: 16px;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar Section -->
+
+<header>
+  <div class="logo">
+    <a href="index.html">
+      <img src="public/new_logo_gcci.jpg" alt="Logo" class="logo-img">
+    </a>
+  </div>
+
+  <!-- HAMBURGER -->
+  <div class="hamburger" id="hamburger">☰</div>
+
+  <nav class="nav-links" id="mobileMenu">
+
+    <!-- CLOSE BUTTON -->
+    <div class="close-menu" id="closeMenu">✕</div>
+
+    <a href="index.html">Home</a>
+
+    <div class="dropdown">
+      <a href="#" class="dropdown-toggle">
+        About Us
+      </a>
+      <div class="dropdown-menu">
+        <a href="about.html">Company History</a>
+        <a href="directors.html">Our Director</a>
+        <a href="jounery.html">Our Journey</a>
+        <a href="awards.html">Awards And Certifications</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <a href="#" class="dropdown-toggle">
+        Services 
+      </a>
+      <div class="dropdown-menu">
+        <a href="service1.html">Advocacy / Assessment / Capability Development / Recognition of Competitiveness</a>
+        <a href="service2.html">Liaison Global Expertise Technology Support / Industry Automation</a>
+        <a href="service3.html">Maintenance Software / Support IT / IoT / AI</a>
+        <a href="service4.html">TPM Software (Subscription Model)</a>
+      </div>
+    </div>
+
+    <a href="activity.html">Activity</a>
+    <a href="news.html">News</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="training_program.html">Training Program</a>
+
+    <!-- MOBILE CONTACT -->
+    <a href="contact.html" class="mobile-contact">Contact Us</a>
+  </nav>
+
+  <!-- DESKTOP BUTTON -->
+  <div class="nav-buttons">
+    <a href="contact.html" class="btn btn-primary">Contact us</a>
+  </div>
+</header>
+
+<script>
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const closeMenu = document.getElementById("closeMenu");
+
+  hamburger.onclick = () => mobileMenu.classList.add("show");
+  closeMenu.onclick = () => mobileMenu.classList.remove("show");
+
+  document.querySelectorAll(".dropdown-toggle").forEach(toggle => {
+  toggle.addEventListener("click", function () {
+
+    if (window.innerWidth <= 768) {
+      // ✅ mobile: close menu first, then allow navigation
+      mobileMenu.classList.remove("show");
+      return;
+    }
+
+    // desktop only
+    event.preventDefault();
+    this.nextElementSibling.classList.toggle("show");
+  });
+});
+</script>
+
+
+  <!-- Hero Section -->
+  <section class="about-section">
+    <div class="about-overlay">
+      <div class="about-text">
+        <h1>Services</h1>
+        <p>
+          TPM Software – Subscription Based
+        </p>
+        <!-- <a href="/" class="about-link">
+          Back to Home
+          <i data-lucide="arrow-right" class="arrow-icon"></i>
+        </a> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services-container">
+
+    <div class="services-box-wrapper" id="servicesBoxes"></div>
+
+    <div class="service-info" id="serviceInfo"></div>
+
+  </section>
+
+  <script>
+    const servicesData = [
+  {
+    title: "TPM Software – Subscription Based",
+    description:
+      "Comprehensive digital platform supporting all TPM pillars, available on annual/monthly subscription.",
+    description1: "Sub-Services:",
+    subServices: [
+      "Autonomous Maintenance Module (AM Steps, Checklists, Tags)",
+      "Planned Maintenance Module (Schedules, Life Analysis, PM KPIs)",
+      "Quality Maintenance Module (Defect Mapping, 4M, QC Tools)",
+      "Kobetsu Kaizen Module (Kaizen, Cost Saving Projects)",
+      "Focused Improvement Module (Chronic Loss Analysis, OEE)",
+      "Training & Development Module (Skill Matrix, JH/JI Cards)",
+      "Safety / Environment Module",
+      "Digital Dashboards for TPC, TPI, TPA Reviews",
+      "Mobile App for TPM Activities (Photos, Reports, Audits)",
+      "Cloud-Based & Secure Subscription Platform"
+    ]
+  }
+];
+
+const boxesContainer = document.getElementById("servicesBoxes");
+const infoContainer = document.getElementById("serviceInfo");
+
+/* Create Service Box */
+servicesData.forEach((service, index) => {
+  const box = document.createElement("div");
+  box.className = "service-box active";
+  box.innerHTML = `<h3>${service.title}</h3>`;
+  boxesContainer.appendChild(box);
+});
+
+/* Render Info */
+function renderInfo() {
+  const data = servicesData[0];
+
+  infoContainer.innerHTML = `
+    <h3>${data.title}</h3>
+    <p>${data.description}</p>
+    <p>${data.description1}</p>
+    <ul class="sub-services-list">
+      ${data.subServices.map(item => `<li>${item}</li>`).join("")}
+    </ul>
+  `;
+}
+
+/* Default Load */
+renderInfo();
+
+  </script>
+
+    <!-- Footer -->
+<div id="footer-container"></div>
+<script src="footer.js"></script>  
+
+  <!-- JS -->
+  <script src="service4.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

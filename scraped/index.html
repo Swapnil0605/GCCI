@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCCI</title>
+    <link rel="icon" type="image/png" href="public/favicon.jpg">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="navbar.css">
+</head>
+
+<body>
+
+    <!-- Navbar Section -->
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="public/new_logo_gcci.jpg" alt="Logo" class="logo-img">
+            </a>
+        </div>
+
+        <div class="hamburger" id="hamburger">☰</div>
+
+        <nav class="nav-links" id="mobileMenu">
+
+            <!-- CLOSE BUTTON -->
+            <div class="close-menu" id="closeMenu">✕</div>
+
+            <a href="index.html">Home</a>
+
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle">
+                    About Us
+                </a>
+                <div class="dropdown-menu">
+                    <a href="about.html">Company History</a>
+                    <a href="directors.html">Our Director</a>
+                    <a href="jounery.html">Our Journey</a>
+                    <a href="awards.html">Awards And Certifications</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle">
+                    Services
+                </a>
+                <div class="dropdown-menu">
+                    <a href="service1.html">Advocacy / Assessment / Capability Development / Recognition of
+                        Competitiveness</a>
+                    <a href="service2.html">Liaison Global Expertise Technology Support / Industry Automation</a>
+                    <a href="service3.html">Maintenance Software / Support IT / IoT / AI</a>
+                    <a href="service4.html">TPM Software (Subscription Model)</a>
+                </div>
+            </div>
+
+            <a href="activity.html">Activity</a>
+            <a href="news.html">News</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="training_program.html">Training Program</a>
+            <a href="contact.html" class="mobile-contact">Contact Us</a>
+        </nav>
+        <div class="nav-buttons">
+            <a href="contact.html" class="btn btn-primary">Contact us</a>
+        </div>
+
+    </header>
+
+
+    <script>
+        const hamburger = document.getElementById("hamburger");
+        const mobileMenu = document.getElementById("mobileMenu");
+        const closeMenu = document.getElementById("closeMenu");
+
+        hamburger.onclick = () => mobileMenu.classList.add("show");
+        closeMenu.onclick = () => mobileMenu.classList.remove("show");
+
+        document.querySelectorAll(".dropdown-toggle").forEach(toggle => {
+            toggle.addEventListener("click", function () {
+
+                if (window.innerWidth <= 768) {
+                    // ✅ mobile: close menu first, then allow navigation
+                    mobileMenu.classList.remove("show");
+                    return;
+                }
+
+                // desktop only
+                event.preventDefault();
+                this.nextElementSibling.classList.toggle("show");
+            });
+        });
+    </script>
+
+
+
+    <!-- Hero Section -->
+
+    <div class="hero-container" id="home">
+        <section class="hero" id="heroSlider">
+            <div class="hero-content">
+                <div class="tag">
+                    <span class="dot"></span> Global Corporate Council India – GCCI / GCCI International LLP
+                </div>
+                <h1>GCCI International – <br>Inspiring Global Excellence</h1>
+                <p>Transforming Organizations Through Knowledge, Innovation, and Collaboration.</p>
+                <a href="contact.html" class="btn btn-cta">Get a Free Quote</a>
+            </div>
+        </section>
+    </div>
+    <script>
+        const hero = document.getElementById("heroSlider");
+
+        const images = [
+            "public/img_16.jpg",
+            "images/img_22.jpg",
+            "images/img_13.jpg"
+        ];
+
+        let currentIndex = 0;
+
+        function changeBackground() {
+            hero.style.backgroundImage =
+                `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('${images[currentIndex]}')`;
+
+            currentIndex = (currentIndex + 1) % images.length;
+        }
+
+        // first load
+        changeBackground();
+
+        // change every 4 seconds
+        setInterval(changeBackground, 4000);
+    </script>
+
+
+    <!-- Why Choose US Section -->
+
+    <div class="main-content-wrapper">
+
+        <section class="benefits" id="benefits">
+            <div class="container">
+                <div class="benefits-header">
+                    <h2>Why Choose <br> Global Corporate Council India – GCCI / GCCI International LLP</h2>
+                    <div class="benefits-desc">
+                        <p>Founded in 2017 with a vision of delivering end-to-end solutions through global expertise,
+                            GCCI has evolved into a multifaceted enterprise. In 2023, we expanded and rebranded as GCCI
+                            International LLP. </p>
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <h3>VALUE CREATOR TO ORGANIZATION PURPOSE</h3>
+                        <p>We align every initiative with your organizational purpose, ensuring measurable value
+                            creation that strengthens long-term growth.</p>
+                    </div>
+
+                    <div class="benefit-item">
+                        <h3>DRIVING TEAM TO OPTIMIZE RETURN ON HUMAN RESOURCE</h3>
+                        <p>Our consulting and training frameworks empower your workforce to deliver maximum performance
+                            and enhanced ROI on human capital.</p>
+                    </div>
+
+                    <div class="benefit-item">
+                        <h3>TRUSTWORTHINESS</h3>
+                        <p>With global partnerships and proven methodologies, we operate with complete transparency,
+                            integrity, and reliability.</p>
+                    </div>
+
+                    <div class="benefit-item">
+                        <h3>CREATIVITY AS CULTURE</h3>
+                        <p>We promote a culture of creative thinking that encourages innovation and continuous
+                            improvement across all levels.</p>
+                    </div>
+
+                    <div class="benefit-item">
+                        <h3>VALUE THE PRINCIPLES AND PEOPLE</h3>
+                        <p>We uphold strong professional ethics while respecting individuals, fostering a healthy,
+                            principle-driven work environment.</p>
+                    </div>
+
+                    <div class="benefit-item">
+                        <h3>METICULOUSNESS TO THE COMMITTED TASK</h3>
+                        <p>We approach every assignment with careful attention to detail and disciplined execution,
+                            ensuring consistent, dependable results.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+
+        <section class="solutions" id="solutions">
+            <div class="solutions-overlay"></div>
+            <div class="container">
+                <div class="solutions-header">
+                    <h2>Our Services</h2>
+                    <p>Delivering comprehensive business, automation, inspection, and manufacturing solutions powered by
+                        global expertise.
+                    </p>
+                </div>
+
+                <div class="solutions-grid">
+                    <div class="solution-card">
+                        <h3>Advocacy / Assessment / Capability Development / Recognition of Competitiveness</h3>
+                        <div class="card-content">
+                            <!-- <p>Power your home with clean energy, cut electricity bills, and enjoy long-term savings with reliable solar panels.</p> -->
+                            <a href="service1.html" class="btn-explore">Explore Now</a>
+                        </div>
+                    </div>
+
+                    <div class="solution-card">
+                        <h3>Liaison Global Expertise Technology Support / Industry Automation</h3>
+                        <div class="card-content">
+                            <!-- <p>Reduce business costs, boost sustainability, and make your company future-ready with efficient solar solutions.</p> -->
+                            <a href="service2.html" class="btn-explore">Explore Now</a>
+                        </div>
+                    </div>
+
+                    <div class="solution-card">
+                        <h3>Maintenance Software / Support IT / IoT / AI</h3>
+                        <div class="card-content">
+                            <!-- <p>Store extra energy for use anytime, ensuring backup during outages and greater energy independence.</p> -->
+                            <a href="service3.html" class="btn-explore">Explore Now</a>
+                        </div>
+                    </div>
+
+                    <div class="solution-card">
+                        <h3>TPM Software (Subscription Model)</h3>
+                        <div class="card-content">
+                            <!-- <p>Keep your system performing at its best with regular monitoring, servicing, and expert assistance.</p> -->
+                            <a href="service4.html" class="btn-explore">Explore Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="eco-tech">
+            <div class="container">
+                <div class="eco-content-grid">
+                    <div class="eco-left">
+                        <h2 class="eco-title">Global Corporate Council India</h2>
+                        <div class="stat-block">
+                            <div class="stat-number" data-target="225" data-suffix="+">0</div>
+                            <h3 class="stat-title">GCCI’s Total Years of Experience</h3>
+                            <p class="stat-desc">122 TPM Assessment
+                                Activity Report
+                                Preparation out of
+                                61 Assessment</p>
+                        </div>
+                    </div>
+
+                    <div class="eco-divider">
+                        <div class="divider-line"></div>
+                        <div class="divider-icon">⚡</div>
+                        <div class="divider-line"></div>
+                    </div>
+
+                    <div class="eco-right">
+                        <!-- <p class="eco-main-desc">We integrate smart solar solutions with eco-friendly technology to boost efficiency, cut costs, and protect the environment.</p> -->
+                        <div class="stat-block">
+                            <div class="stat-number" data-target="18">0</div>
+                            <h3 class="stat-title">GCCI Consultants</h3>
+                            <p class="stat-desc">7+ GCCI Health
+                                Check-up assessors
+                                (External Experts)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brands Section -->
+
+        <section class="partners-section">
+            <div class="partners-header">
+                <h2>Our Business Partners</h2>
+            </div>
+
+            <div class="partners-slider-container">
+                <div class="clients-slider" id="clientsSlider">
+                    <img src="/clients/client_1.jpg" alt="Client 1" />
+                    <img src="clients/client_40.png" alt="Client 37" />
+                    <img src="/clients/client_2.png" alt="Client 2" />
+                    <img src="/clients/client_3.png" alt="Client 3" />
+                    <img src="/clients/client_4.png" alt="Client 4" />
+                    <img src="/clients/client_5.jpg" alt="Client 5" />
+                    <img src="/clients/client_6.png" alt="Client 6" />
+                    <img src="/clients/client_7.png" alt="Client 7" />
+                    <img src="/clients/client_8.jpg" alt="Client 8" />
+                    <img src="/clients/client_9.png" alt="Client 9" />
+                    <img src="/clients/client_10.png" alt="Client 10" />
+                    <img src="/clients/client_11.png" alt="Client 11" />
+                    <img src="/clients/client_12.png" alt="Client 12" />
+                    <img src="/clients/client_13.png" alt="Client 13" />
+                    <img src="/clients/client_14.avif" alt="Client 14" />
+                    <img src="/clients/client_15.png" alt="Client 15" />
+                    <img src="/clients/client_16.png" alt="Client 16" />
+                    <img src="/clients/client_17.png" alt="Client 17" />
+                    <img src="/clients/client_18.png" alt="Client 18" />
+                    <img src="/clients/client_19.png" alt="Client 19" />
+                    <img src="/clients/client_20.webp" alt="Client 20" />
+                    <img src="/clients/client_21.png" alt="Client 21" />
+                    <img src="/clients/client_22.png" alt="Client 22" />
+                    <img src="/clients/client_23.jpg" alt="Client 23" />
+                    <img src="/clients/client_24.webp" alt="Client 24" />
+                    <img src="/clients/client_25.png" alt="Client 25" />
+                    <img src="/clients/client_26.png" alt="Client 26" />
+                    <img src="/clients/client_27.png" alt="Client 27" />
+                    <img src="/clients/client_28.png" alt="Client 28" />
+                    <img src="/clients/client_29.jpg" alt="Client 29" />
+                    <img src="/clients/client_30.png" alt="Client 30" />
+                    <img src="/clients/client_31.png" alt="Client 31" />
+                    <img src="/clients/client_32.png" alt="Client 32" />
+                    <img src="/clients/client_33.png" alt="Client 33" />
+                    <img src="/clients/client_34.png" alt="Client 34" />
+                    <img src="/clients/client_35.jpg" alt="Client 35" />
+                    <img src="/clients/client_36.jpg" alt="Client 36" />
+                    <img src="/clients/client_37.png" alt="Client 37" />
+                    <img src="/clients/client39.jpeg" alt="Client 37" />
+                    <img src="/clients/client40.jpeg" alt="Client 37" />
+                    <img src="clients/client_41.png" alt="Client 37" />
+                    <img src="clients/client_42.jpeg" alt="Client 37" />
+                </div>
+            </div>
+
+            <div class="partners-btn">
+                <button id="openPopup">
+                    View All Partners →
+                </button>
+            </div>
+        </section>
+
+        <!-- Popup -->
+        <div class="popup-overlay" id="popup">
+            <div class="popup-box">
+                <button class="close-btn" id="closePopup">Close ✕</button>
+                <h3>All Partners</h3>
+
+                <div class="popup-grid">
+                    <!-- same images -->
+                    <img src="/clients/client_1.jpg" />
+                    <img src="clients/client_40.png" alt="Client 37" />
+                    <img src="/clients/client_2.png" />
+                    <img src="/clients/client_3.png" />
+                    <img src="/clients/client_4.png" />
+                    <img src="/clients/client_5.jpg" />
+                    <img src="/clients/client_6.png" />
+                    <img src="/clients/client_7.png" />
+                    <img src="/clients/client_8.jpg" />
+                    <img src="/clients/client_9.png" />
+                    <img src="/clients/client_10.png" />
+                    <img src="/clients/client_11.png" />
+                    <img src="/clients/client_12.png" />
+                    <img src="/clients/client_13.png" />
+                    <img src="/clients/client_14.avif" />
+                    <img src="/clients/client_15.png" />
+                    <img src="/clients/client_16.png" />
+                    <img src="/clients/client_17.png" />
+                    <img src="/clients/client_18.png" />
+                    <img src="/clients/client_19.png" />
+                    <img src="/clients/client_20.webp" />
+                    <img src="/clients/client_21.png" />
+                    <img src="/clients/client_22.png" />
+                    <img src="/clients/client_23.jpg" />
+                    <img src="/clients/client_24.webp" />
+                    <img src="/clients/client_25.png" />
+                    <img src="/clients/client_26.png" />
+                    <img src="/clients/client_27.png" />
+                    <img src="/clients/client_28.png" />
+                    <img src="/clients/client_29.jpg" />
+                    <img src="/clients/client_30.png" />
+                    <img src="/clients/client_31.png" />
+                    <img src="/clients/client_32.png" />
+                    <img src="/clients/client_33.png" />
+                    <img src="/clients/client_34.png" />
+                    <img src="/clients/client_35.jpg" />
+                    <img src="/clients/client_36.jpg" />
+                    <img src="/clients/client_37.png" />
+                    <img src="/clients/client39.jpeg" alt="Client 37" />
+                    <img src="/clients/client40.jpeg" alt="Client 37" />
+                    <img src="clients/client_41.png" alt="Client 37" />
+                    <img src="clients/client_42.jpeg" alt="Client 37" />
+                    
+                </div>
+            </div>
+        </div>
+
+        <script>
+            /* ===== Auto horizontal slider ===== */
+            const slider = document.getElementById("clientsSlider");
+            let scrollAmount = 0;
+
+            function autoScroll() {
+                scrollAmount += 1;
+                slider.style.transform = `translateX(-${scrollAmount}px)`;
+
+                if (scrollAmount >= slider.scrollWidth / 2) {
+                    scrollAmount = 0;
+                }
+            }
+
+            setInterval(autoScroll, 20);
+
+            /* ===== Popup open/close ===== */
+            const popup = document.getElementById("popup");
+            const openBtn = document.getElementById("openPopup");
+            const closeBtn = document.getElementById("closePopup");
+
+            openBtn.addEventListener("click", () => {
+                popup.classList.add("active");
+            });
+
+            closeBtn.addEventListener("click", () => {
+                popup.classList.remove("active");
+            });
+        </script>
+
+
+        <!-- Our Alliance Section -->
+
+        <div class="flex-container reveal">
+            <div class="heading-wrapper">
+                <div class="heading">
+                    <span>building</span>
+                    <span class="bold">ALLIANCES</span><br>
+                    <span class="bold">BEYOND</span>
+                    <span>borders</span>
+                </div>
+            </div>
+
+            <div class="img-div">
+                <img src="public/planet-earth-background.jpg" alt="">
+                <div class="styling">
+                    <div><span class="flag"></span>Institute / University<br><span>Maharashtra,
+                            India</span></div>
+                    <div><span class="flag"></span>Late Y. Murase San<br><span>M/s. YOSHI KENKYUSHO, JAPAN</span></div>
+                </div>
+
+                <div class="styling-2">
+                    <div><span class="flag"></span>Mr. Navraj<br><span>Technology, Liaoning Partner, Germany</span>
+                    </div>
+                    <div><span class="flag"></span>Mr. Sai Kathiresan<br><span>Robotic / AI Specialist, U.S.</span>
+                    </div>
+                    <div><span class="flag"></span>Ms. Prashantini<br><span>Software Specialist, Australia</span></div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const countryMap = {
+                india: "in",
+                japan: "jp",
+                germany: "de",
+                "u.s.": "us",
+                usa: "us",
+                australia: "au"
+            };
+
+            document.querySelectorAll(".flag").forEach(flagDiv => {
+                const text = flagDiv.parentElement.innerText.toLowerCase();
+
+                for (let country in countryMap) {
+                    if (text.includes(country)) {
+                        const img = document.createElement("img");
+                        img.src = `https://flagcdn.com/w40/${countryMap[country]}.png`;
+                        img.alt = country + " flag";
+                        flagDiv.appendChild(img);
+                        break;
+                    }
+                }
+            });
+        </script>
+
+        <script>
+            // Scroll animation using Intersection Observer
+            const reveals = document.querySelectorAll(".reveal");
+
+            const observer = new IntersectionObserver(
+                entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("active");
+                            observer.unobserve(entry.target); // ek hi baar chale
+                        }
+                    });
+                },
+                {
+                    threshold: 0.2
+                }
+            );
+
+            reveals.forEach(el => observer.observe(el));
+        </script>
+
+
+        <!-- News Section -->
+
+        <section class="process-section" id="process">
+            <div class="process-container">
+                <div class="process-header-left">
+                    <h2>News<br></h2>
+                </div>
+                <div class="process-header-right">
+                    <p>Learning from Japanese excellence to drive global growth and continuous improvement.</p>
+                    <!-- <a href="news.html"><span class="scroll-hint">Keep Scrolling to Explore >></span></a> -->
+                </div>
+            </div>
+
+            <div class="cards-wrapper">
+                <div class="cards-track">
+
+                    <div class="process-card">
+                        <h3>GCCI Launches Cloud-Based TPM Software (Subscription Model)</h3>
+                        <div class="card-bottom">
+                            <p>GCCI has introduced a next-generation TPM Digital Platform covering all eight TPM pillars
+                                with real-time dashboards, mobile app connectivity, and cloud-based analytics.</p>
+                            <div class="tags">
+                                <span class="tag">June 09, 2025</span>
+                                <!-- <span class="tag">High Efficiency</span> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="process-card">
+                        <h3>New Partnership for Global Industrial Technology Integration</h3>
+                        <div class="card-bottom">
+                            <p>GCCI has established collaborative channels with international OEMs and technology
+                                experts for automation, smart manufacturing solutions, and advanced vision inspection
+                                systems.</p>
+                            <div class="tags">
+                                <span class="tag">June 09, 2025</span>
+                                <!-- <span class="tag">Certified Experts</span> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="process-card">
+                        <h3>Successful Commissioning of Vision Inspection System</h3>
+                        <div class="card-bottom">
+                            <p>GCCI recently supported the design and implementation of an AI-driven vision inspection
+                                solution for steel tube and strip processing lines, enabling 100% surface defect
+                                detection and automated quality control.</p>
+                            <div class="tags">
+                                <span class="tag">June 09, 2025</span>
+                                <!-- <span class="tag">Clean Energy</span> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="process-card">
+                        <h3>Custom SPM Development Completed</h3>
+                        <div class="card-bottom">
+                            <p>Our engineering team successfully coordinated the development of tailor-made SPMs for
+                                assembly and machining applications, productivity at
+                                multiple client plants.</p>
+                            <div class="tags">
+                                <span class="tag">June 09, 2025</span>
+                                <!-- <span class="tag">Real-time Data</span> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="process-card">
+                        <h3>GCCI Expands IoT & AI Offerings for Predictive Maintenance</h3>
+                        <div class="card-bottom">
+                            <p>GCCI now provides IoT-based sensor integration for critical machines along with AI/ML
+                                predictive maintenance models that help clients prevent breakdowns and optimize
+                                equipment reliability.</p>
+                            <div class="tags">
+                                <span class="tag">June 09, 2025</span>
+                                <!-- <span class="tag">Lifetime Care</span> -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Footer -->
+        <div id="footer-container"></div>
+        <script src="footer.js"></script>
+
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

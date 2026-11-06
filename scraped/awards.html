@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GCCI</title>
+<link rel="icon" type="image/png" href="public/favicon.jpg">
+
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+<style>
+  
+ /* ============================================
+           NAVIGATION BAR
+           ============================================ */
+header {
+  position: relative;
+  padding: 10px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  z-index: 100;
+}
+
+.logo-img {
+  width: 250px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #000;
+  font-size: 17px;
+  font-family: "Roboto", sans-serif;
+}
+
+.nav-links a:hover {
+  color: blue;
+}
+
+.nav-buttons {
+  display: flex;
+}
+
+/* DROPDOWN DESKTOP */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 25px;
+  left: -40px;
+  background: #111;
+  display: none;
+  flex-direction: column;
+  z-index: 200;
+}
+
+.dropdown-menu a {
+  padding: 10px 20px;
+     color: rgba(255, 255, 255, 0.8);
+     text-decoration: none;
+     font-size: 15px;
+     white-space: nowrap;
+}
+.dropdown-menu a:hover {
+     background: rgb(94, 153, 241);
+     color: #000;
+ }
+
+.dropdown:hover .dropdown-menu {
+  display: flex;
+}
+
+/* BUTTON */
+.btn-primary {
+  background: #0a3d91;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+}
+
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.close-menu {
+  display: none;
+  font-size: 24px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.arrow {
+  font-size: 12px;
+  margin-left: auto;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    z-index: 9999;
+    justify-content: space-between;
+     padding: 10px 12px;
+  }
+
+  body {
+    padding-top: 90px;
+  }
+
+   .logo-img {
+    width: 250px;
+    height: auto;
+  }
+  .nav-links a {
+  text-decoration: none;
+  color: #000;
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  margin-left: 10px;
+}
+
+
+  .hamburger {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;          /* 👈 IMPORTANT */
+    height: 44px;
+
+    font-size: 30px;
+    line-height: 1;
+    color: #000;
+
+    margin-left: auto;   /* 👈 PUSH TO RIGHT */
+    cursor: pointer;
+    margin-right: 20px
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    height: 100vh;
+    background: #fff;
+    flex-direction: column;
+    padding: 80px 20px;
+    gap: 18px;
+    transition: 0.4s;
+    z-index: 9998;
+    display: none;
+  }
+
+  .nav-links.show {
+    display: flex;
+    left: 0;
+  }
+
+  .nav-buttons {
+    display: none;
+  }
+
+  .close-menu {
+    display: block;
+  }
+
+  /* MOBILE DROPDOWN */
+  .dropdown-menu {
+    position: static;
+    background: #f5f5f5;
+    display: none;
+    padding-left: 15px;
+  }
+
+  .dropdown-menu.show {
+    display: block;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: none;
+  }
+
+  .dropdown-toggle {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 769px) {
+  .arrow,
+  .mobile-contact {
+    display: none;
+  }
+}
+
+
+</style>
+
+<style>
+
+  @import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Cinzel:wght@400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
+/* ================= BASIC RESET ================= */
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Poppins',sans-serif;
+  background:#f8fafc;
+  color:#1f2937;
+}
+
+/* ================= HERO ================= */
+.about-section{
+  height:70vh;
+  background:url("/images/img_6.jpg") center/cover no-repeat;
+  display:flex;
+}
+.about-overlay{
+  width:100%;
+  background:linear-gradient(to right,rgba(0,51,153,.6),rgba(0,0,0,.2));
+  display:flex;
+  align-items:center;
+  padding-left:80px;
+}
+.about-text{color:#fff;max-width:520px;}
+.about-text h1{font-size:3rem;margin-bottom:15px; font-family: "Saira", sans-serif;}
+.about-text p{margin-bottom:25px; font-family: "Roboto", sans-serif;}
+.about-link{
+  color:#fff;
+  text-decoration:none;
+  border:1px solid #fff;
+  padding:10px 20px;
+  border-radius:30px;
+  font-family: "Roboto", sans-serif;
+}
+@media (max-width: 320px) {
+
+  .about-section {
+    height: 55vh;
+  }
+
+  .about-overlay {
+    padding-left: 16px;
+    padding-right: 16px;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .about-text h1 {
+    font-size: 1.6rem;
+  }
+
+  .about-text p {
+    font-size: 0.9rem;
+  }
+
+  .about-link {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}
+@media (max-width: 480px) {
+
+  .about-section {
+    height: 58vh;
+  }
+
+  .about-overlay {
+    padding-left: 20px;
+    padding-right: 20px;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .about-text h1 {
+    font-size: 1.9rem;
+  }
+
+  .about-text p {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 576px) {
+
+  .about-section {
+    height: 60vh;
+  }
+
+  .about-text {
+    max-width: 100%;
+  }
+
+  .about-text h1 {
+    font-size: 2.1rem;
+  }
+
+  .about-text p {
+    font-size: 1.05rem;
+  }
+}
+@media (max-width: 768px) {
+
+  .about-overlay {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .about-text h1 {
+    font-size: 2.4rem;
+  }
+
+  .about-text p {
+    font-size: 1.1rem;
+  }
+}
+@media (max-width: 992px) {
+
+  .about-section {
+    height: 65vh;
+  }
+
+  .about-overlay {
+    padding-left: 50px;
+  }
+
+  .about-text h1 {
+    font-size: 2.7rem;
+  }
+}
+@media screen and (max-width: 1152px) {
+
+  .about-overlay {
+    padding-left: 60px;
+  }
+}
+
+
+/* ================= SECTION ================= */
+.horizontal-timeline-section{padding:80px 0;}
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:0 20px;
+}
+
+/* ================= TITLE ================= */
+.company-excellence-info{text-align:center;margin-bottom:40px;}
+.company-excellence-info h2{font-size:32px;margin-bottom:15px; font-family: "Saira", sans-serif;}
+.company-excellence-info p{max-width:800px;margin:auto;color:#6b7280; font-family: "Roboto", sans-serif;}
+
+/* ================= TIMELINE ================= */
+.timeline-navigation{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:20px;
+  margin-bottom:40px;
+}
+.timeline-nav-btn{
+  width:45px;height:45px;
+  border:none;
+  border-radius:50%;
+  background:rgb(10, 56, 124);
+  color:#fff;
+  font-size:18px;
+  cursor:pointer;
+}
+
+.horizontal-timeline{flex:1;max-width:800px;}
+.timeline-track{
+  height:4px;
+  background:#e5e7eb;
+  position:relative;
+  margin:30px 0;
+}
+.timeline-progress{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,rgb(10, 56, 124),rgb(118, 169, 246));
+  transition:width .4s ease;
+}
+.timeline-points{
+  display:flex;
+  justify-content:space-between;
+}
+.timeline-point{cursor:pointer;text-align:center;}
+.point-dot{
+  width:16px;height:16px;
+  border-radius:50%;
+  background:#e5e7eb;
+  margin:auto;
+}
+.timeline-point.active .point-dot{
+  background:#3b82f6;
+  transform:scale(1.3);
+}
+.point-date{font-size:14px;color:#6b7280;margin-top:6px;}
+
+/* ================= DETAILS ================= */
+.timeline-award-details{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+  margin-top:40px;
+}
+.award-date{color:rgb(10, 56, 124);font-weight:600;margin-bottom:10px; font-family: "Roboto", sans-serif;}
+.award-info-section h3{font-size:26px;margin-bottom:15px; font-family: "Saira", sans-serif;}
+.award-info-section p{color:#6b7280; font-family: "Roboto", sans-serif;}
+
+.certificate-frame{
+  max-width:380px;
+  margin:auto;
+  cursor:pointer;
+}
+.certificate-frame img{
+  width:100%;
+  height:380px;
+  object-fit:contain;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+/* ================= MODAL ================= */
+.certificate-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+.certificate-modal.active{display:flex;}
+.modal-content{
+  position:relative;
+  max-width:90%;
+}
+.modal-close{
+  position:absolute;
+  top:-15px;
+  right:-15px;
+  width:40px;height:40px;
+  border:none;
+  border-radius:50%;
+  background:#ef4444;
+  color:#fff;
+  font-size:20px;
+  cursor:pointer;
+}
+.modal-content img{
+  max-width:100%;
+  border-radius:12px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:900px){
+  .timeline-award-details{grid-template-columns:1fr;text-align:center;}
+}
+</style>
+</head>
+
+<body>
+
+  <!-- Navbar Section -->
+<header>
+  <div class="logo">
+    <a href="index.html">
+      <img src="public/new_logo_gcci.jpg" alt="Logo" class="logo-img">
+    </a>
+  </div>
+
+  <!-- HAMBURGER -->
+  <div class="hamburger" id="hamburger">☰</div>
+
+  <nav class="nav-links" id="mobileMenu">
+
+    <!-- CLOSE BUTTON -->
+    <div class="close-menu" id="closeMenu">✕</div>
+
+    <a href="index.html">Home</a>
+
+    <div class="dropdown">
+      <a href="#" class="dropdown-toggle">
+        About Us 
+      </a>
+      <div class="dropdown-menu">
+        <a href="about.html">Company History</a>
+        <a href="directors.html">Our Director</a>
+        <a href="jounery.html">Our Journey</a>
+        <a href="awards.html">Awards And Certifications</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <a href="#" class="dropdown-toggle">
+        Services 
+      </a>
+      <div class="dropdown-menu">
+        <a href="service1.html">Advocacy / Assessment / Capability Development / Recognition of Competitiveness</a>
+        <a href="service2.html">Liaison Global Expertise Technology Support / Industry Automation</a>
+        <a href="service3.html">Maintenance Software / Support IT / IoT / AI</a>
+        <a href="service4.html">TPM Software (Subscription Model)</a>
+      </div>
+    </div>
+
+    <a href="activity.html">Activity</a>
+    <a href="news.html">News</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="training_program.html">Training Program</a>
+
+    <!-- MOBILE CONTACT -->
+    <a href="contact.html" class="mobile-contact">Contact Us</a>
+  </nav>
+
+  <!-- DESKTOP BUTTON -->
+  <div class="nav-buttons">
+    <a href="contact.html" class="btn btn-primary">Contact us</a>
+  </div>
+</header>
+
+<script>
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const closeMenu = document.getElementById("closeMenu");
+
+  hamburger.onclick = () => mobileMenu.classList.add("show");
+  closeMenu.onclick = () => mobileMenu.classList.remove("show");
+
+  document.querySelectorAll(".dropdown-toggle").forEach(toggle => {
+  toggle.addEventListener("click", function () {
+
+    if (window.innerWidth <= 768) {
+      // ✅ mobile: close menu first, then allow navigation
+      mobileMenu.classList.remove("show");
+      return;
+    }
+
+    // desktop only
+    event.preventDefault();
+    this.nextElementSibling.classList.toggle("show");
+  });
+});
+</script>
+
+<!-- HERO -->
+<section class="about-section">
+  <div class="about-overlay">
+    <div class="about-text">
+      <h1>Awards And Certifications</h1>
+      <p>Recognized for Excellence, Celebrated for Innovation</p>
+      <!-- <a href="/" class="about-link">Back to Home →</a> -->
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="horizontal-timeline-section">
+<div class="container">
+
+<div class="company-excellence-info">
+  <h2>What We’ve Earned</h2>
+  <p>Global Corporate Council India – GCCI has built a strong reputation for driving operational excellence across diverse industries. Our dedication to quality, innovation, and global best practices has been consistently recognized by trusted industry leaders and international partners.</p>
+</div>
+
+<div class="timeline-navigation">
+  <button class="timeline-nav-btn" id="prevBtn">◀</button>
+
+  <div class="horizontal-timeline">
+    <div class="timeline-track">
+      <div class="timeline-progress" id="progress"></div>
+    </div>
+    <div class="timeline-points" id="timelinePoints"></div>
+  </div>
+
+  <button class="timeline-nav-btn" id="nextBtn">▶</button>
+</div>
+
+<div class="timeline-award-details">
+  <div class="award-info-section">
+    <div class="award-date" id="awardDate"></div>
+    <h3 id="awardTitle"></h3>
+    <p id="awardDesc"></p>
+  </div>
+
+  <div class="award-certificate-section">
+    <div class="certificate-frame">
+      <img id="awardImage">
+    </div>
+  </div>
+</div>
+
+</div>
+</section>
+
+<!-- MODAL -->
+<div class="certificate-modal" id="modal">
+  <div class="modal-content">
+    <button class="modal-close" id="closeModal">×</button>
+    <img id="modalImg">
+  </div>
+</div>
+
+<script>
+/* ================= DATA ================= */
+const awards = [
+ {
+  date:"06 September 2017",
+  title:"Government of India Form GST REG-06",
+  desc:"This certification officially recognizes GCCI International LLP as a registered and compliant business entity under the Goods and Services Tax Act in India. It reinforces our credibility and ensures transparent, lawful, and trustworthy business operations across all our service divisions.",
+  img:"/certificate/certificate_2.jpg"
+ },
+ {
+  date:"16 October 2025",
+  title:"JIPM Certified TPM Specialist",
+  desc:"Acknowledged by globally reputed TPM authorities, this certification validates our deep expertise in Total Productive Maintenance. It highlights our capability to drive significant productivity enhancement, cost reduction, and operational excellence through world-class TPM methodologies.",
+  img:"/certificate/certificate_1.jpeg"
+ }
+];
+
+let index=0;
+
+/* ================= ELEMENTS ================= */
+const dateEl=document.getElementById("awardDate");
+const titleEl=document.getElementById("awardTitle");
+const descEl=document.getElementById("awardDesc");
+const imgEl=document.getElementById("awardImage");
+const modal=document.getElementById("modal");
+const modalImg=document.getElementById("modalImg");
+const progress=document.getElementById("progress");
+const points=document.getElementById("timelinePoints");
+
+/* ================= INIT ================= */
+awards.forEach((a,i)=>{
+ const div=document.createElement("div");
+ div.className="timeline-point";
+ div.innerHTML=`<div class="point-dot"></div><div class="point-date">${a.date}</div>`;
+ div.onclick=()=>update(i);
+ points.appendChild(div);
+});
+
+function update(i){
+ index=i;
+ const a=awards[i];
+ dateEl.textContent=a.date;
+ titleEl.textContent=a.title;
+ descEl.textContent=a.desc;
+ imgEl.src=a.img;
+ progress.style.width=((i+1)/awards.length)*100+"%";
+ document.querySelectorAll(".timeline-point").forEach((p,idx)=>{
+  p.classList.toggle("active",idx===i);
+ });
+}
+
+update(0);
+
+/* ================= EVENTS ================= */
+document.getElementById("prevBtn").onclick=()=>update((index-1+awards.length)%awards.length);
+document.getElementById("nextBtn").onclick=()=>update((index+1)%awards.length);
+
+imgEl.onclick=()=>{
+ modal.classList.add("active");
+ modalImg.src=imgEl.src;
+}
+document.getElementById("closeModal").onclick=()=>modal.classList.remove("active");
+modal.onclick=e=>{if(e.target===modal)modal.classList.remove("active");}
+
+/* Keyboard */
+window.addEventListener("keydown",e=>{
+ if(e.key==="ArrowLeft")document.getElementById("prevBtn").click();
+ if(e.key==="ArrowRight")document.getElementById("nextBtn").click();
+ if(e.key==="Escape")modal.classList.remove("active");
+});
+</script>
+
+  <!-- Footer -->
+<div id="footer-container"></div>
+<script src="footer.js"></script>  
+
+</body>
+</html>

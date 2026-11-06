@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #f0f6fe;
+  --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
+  --color-brand-500: #1d64d8;
+  --color-brand-600: #0a387c;
+  --color-brand-700: #082d64;
+  --color-brand-800: #06224d;
+  --color-brand-900: #041836;
+  --color-brand-950: #020c1c;
+
+  --color-industrial-dark: #0f172a;
+  --color-industrial-slate: #1e293b;
+  --color-industrial-muted: #64748b;
+  --color-industrial-border: #e2e8f0;
+  --color-industrial-surface: #f8fafc;
+  --color-industrial-gold: #d97706;
+
+  --font-sans: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --brand-blue: #0a387c;
+  --brand-dark: #041836;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #ffffff;
+  color: #0f172a;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* CARBO / Code Industrial Kinetic Arrow Button */
+.btn-arrow-grey {
+  background-color: #f2f2f2;
+}
+
+.btn-arrow {
+  display: flex;
+  position: relative;
+  width: 44px;
+  height: 44px;
+  padding: 0px 14px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  transition: background-color 0.6s ease-in-out, color 0.4s ease-in-out;
+  overflow: hidden;
+  color: #1e293b;
+}
+
+.btn-arrow .arrow-primary,
+.btn-arrow .arrow-secondary {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-arrow .arrow-secondary {
+  position: absolute;
+  transform: translate(-26px, 26px);
+}
+
+.group:hover .btn-arrow,
+.btn-arrow:hover {
+  background-color: #0a3d91;
+  color: #ffffff;
+}
+
+.group:hover .btn-arrow .arrow-primary,
+.btn-arrow:hover .arrow-primary {
+  transform: translate(26px, -26px);
+}
+
+.group:hover .btn-arrow .arrow-secondary,
+.btn-arrow:hover .arrow-secondary {
+  transform: translate(0, 0);
+}
+
+/* News Title Transition from Sample UI */
+.latest-news--item--title {
+  color: #1f1d1d;
+  font-size: 22px;
+  line-height: normal;
+  transition: color 0.6s ease-in-out;
+}
+
+.group:hover .latest-news--item--title {
+  color: #0a3d91;
+}
+

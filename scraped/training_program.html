@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GCCI</title>
+    <link rel="icon" type="image/png" href="public/favicon.jpg">
+<style>
+  
+ /* ============================================
+           NAVIGATION BAR
+           ============================================ */
+header {
+  position: relative;
+  padding: 10px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  z-index: 100;
+}
+
+.logo-img {
+  width: 250px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #000;
+  font-size: 17px;
+  font-family: "Roboto", sans-serif;
+}
+
+.nav-links a:hover {
+  color: blue;
+}
+
+.nav-buttons {
+  display: flex;
+}
+
+/* DROPDOWN DESKTOP */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 25px;
+  left: -40px;
+  background: #111;
+  display: none;
+  flex-direction: column;
+  z-index: 200;
+}
+
+.dropdown-menu a {
+  padding: 10px 20px;
+     color: rgba(255, 255, 255, 0.8);
+     text-decoration: none;
+     font-size: 15px;
+     white-space: nowrap;
+}
+.dropdown-menu a:hover {
+     background: rgb(94, 153, 241);
+     color: #000;
+ }
+
+.dropdown:hover .dropdown-menu {
+  display: flex;
+}
+
+/* BUTTON */
+.btn-primary {
+  background: #0a3d91;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+}
+
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.close-menu {
+  display: none;
+  font-size: 24px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.arrow {
+  font-size: 12px;
+  margin-left: auto;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    z-index: 9999;
+    justify-content: space-between;
+     padding: 10px 12px;
+  }
+
+  body {
+    padding-top: 90px;
+  }
+
+   .logo-img {
+    width: 250px;
+    height: auto;
+  }
+
+  .nav-links a {
+  text-decoration: none;
+  color: #000;
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  margin-left: 10px;
+}
+
+
+  .hamburger {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;          /* 👈 IMPORTANT */
+    height: 44px;
+
+    font-size: 30px;
+    line-height: 1;
+    color: #000;
+
+    margin-left: auto;   /* 👈 PUSH TO RIGHT */
+    cursor: pointer;
+    margin-right: 20px
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    height: 100vh;
+    background: #fff;
+    flex-direction: column;
+    padding: 80px 20px;
+    gap: 18px;
+    transition: 0.4s;
+    z-index: 9998;
+    display: none;
+  }
+
+  .nav-links.show {
+    display: flex;
+    left: 0;
+  }
+
+  .nav-buttons {
+    display: none;
+  }
+
+  .close-menu {
+    display: block;
+  }
+
+  /* MOBILE DROPDOWN */
+  .dropdown-menu {
+    position: static;
+    background: #f5f5f5;
+    display: none;
+    padding-left: 15px;
+  }
+
+  .dropdown-menu.show {
+    display: block;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: none;
+  }
+
+  .dropdown-toggle {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 769px) {
+  .arrow,
+  .mobile-contact {
+    display: none;
+  }
+}
+
+
+</style>
+  <style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Cinzel:wght@400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
+
+.banner {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  overflow: hidden;
+}
+
+/* Left background image */
+.left-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 40%;
+  height: 100%;
+  background: 
+    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+    url("images/img_30.jpeg") center/cover no-repeat;
+}
+
+/* Orange curved shape */
+.orange-curve {
+  position: absolute;
+  left: 25%;
+  top: -20%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  border: 18px solid #f26522;
+}
+
+/* Circular image */
+.circle-img {
+  position: absolute;
+  left: 28%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  border: 10px solid #f26522;
+  background: #fff;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.circle-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* filter: grayscale(100%); */
+}
+
+/* Right content */
+.content {
+  position: absolute;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 420px;
+}
+
+.content h1 {
+  font-size: 42px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #222;
+  margin-left: -80px;
+  font-family: "Saira", sans-serif;
+}
+
+.content p {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #666;
+  font-family: "Roboto", sans-serif;
+  margin-left: -80px;
+}
+
+/* Quote - top right */
+.quote {
+  position: absolute;
+  top: 60px;
+  right: 8%;
+  max-width: 320px;
+  font-size: 18px;
+  font-style: italic;
+  color: #444;
+  line-height: 1.4;
+  font-family: "Roboto", sans-serif;
+}
+
+.quote-text {
+  margin-bottom: 8px;
+}
+
+.quote-author {
+  display: block;
+  font-size: 14px;
+  color: #777;
+  font-style: normal;
+  text-align: right;
+  font-family: "Roboto", sans-serif;
+}
+
+
+/* Location & Date - bottom right */
+.event-info {
+  position: absolute;
+  bottom: 50px;
+  right: 8%;
+  text-align: right;
+  font-size: 16px;
+  color: #080808;
+  font-family: "Roboto", sans-serif;
+}
+
+.event-info span {
+  display: block;
+  margin-top: 6px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+  /* Banner height auto */
+  .banner {
+    height: auto;
+    min-height: 70vh;
+  }
+
+  /* Left image full width background */
+  .left-bg {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+  }
+
+  /* Hide circle image on mobile */
+  .circle-img {
+    display: none;
+  }
+
+  /* Hide quote on mobile */
+  .quote {
+    display: none;
+  }
+
+  /* Content on top of image */
+  .content {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    right: auto;
+    max-width: 90%;
+    text-align: center;
+    color: #fff;
+    z-index: 5;
+  }
+
+  .content h1 {
+    font-size: 26px;
+    line-height: 1.3;
+    margin-left: 0;
+    color: #fff;
+  }
+
+  /* Hide GCCI line */
+  .content p {
+    display: none;
+  }
+
+  /* Event info just below title */
+  .event-info {
+    position: absolute;
+    top: 62%;
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
+    bottom: auto;
+    text-align: center;
+    color: #fff;
+    z-index: 5;
+    font-size: 14px;
+  }
+
+  .event-info span {
+    display: block;
+    margin-top: 6px;
+  }
+}
+
+
+
+/* Section */
+.earned-section {
+  max-width: 900px;
+  margin: 100px auto;
+  text-align: center;
+  padding: 0 20px;
+}
+
+/* Heading */
+.earned-section h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 20px;
+  font-family: "Saira", sans-serif;
+}
+
+/* Paragraph */
+.earned-section p {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #475569;
+  margin-bottom: 35px;
+  font-family: "Roboto", sans-serif;
+}
+
+/* Buttons */
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btn-train {
+  padding: 14px 30px;
+  font-size: 15px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-family: "Roboto", sans-serif;
+}
+
+/* Primary Button */
+.btn-train.primary {
+  background: rgb(10, 56, 124);
+  color: #fff;
+}
+
+.btn-train.primary:hover {
+  background: rgb(10, 56, 124);
+}
+
+/* Secondary Button */
+.btn-train.secondary {
+  background: transparent;
+  color: rgb(10, 56, 124);
+  border: 2px solid rgb(10, 56, 124);
+}
+
+.btn-train.secondary:hover {
+  background: rgb(10, 56, 124);
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 320px) {
+
+  /* ===== BANNER ===== */
+  .banner {
+    height: 100vh;
+  }
+
+  .left-bg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .circle-img,
+  .quote {
+    display: none;
+  }
+
+  .content {
+    top: 45%;
+    left: 50%;
+    right: auto;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    max-width: 90%;
+  }
+
+  .content h1 {
+    font-size: 22px;
+    margin-left: 0;
+    color: #fff;
+  }
+
+  .content p {
+    display: none;
+  }
+
+  .event-info {
+    position: absolute;
+    top: 62%;
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
+    bottom: auto;
+    text-align: center;
+    color: #fff;
+    font-size: 13px;
+  }
+
+  /* ===== EARNED SECTION ===== */
+  .earned-section {
+    margin: 60px auto;
+  }
+
+  .earned-section h2 {
+    font-size: 22px;
+  }
+
+  .earned-section p {
+    font-size: 14px;
+  }
+}
+@media (max-width: 480px) {
+
+  .content h1 {
+    font-size: 24px;
+  }
+
+  .event-info {
+    font-size: 14px;
+  }
+
+  .earned-section h2 {
+    font-size: 24px;
+  }
+
+  .earned-section p {
+    font-size: 15px;
+  }
+}
+@media (max-width: 576px) {
+
+  .content h1 {
+    font-size: 26px;
+  }
+
+  .earned-section {
+    margin: 80px auto;
+  }
+
+  .earned-section h2 {
+    font-size: 26px;
+  }
+}
+@media (max-width: 768px) {
+
+  .content h1 {
+    font-size: 28px;
+  }
+
+  .event-info {
+    font-size: 15px;
+  }
+
+  .btn-group {
+    flex-direction: column;
+  }
+
+  .btn-train {
+    width: 100%;
+  }
+}
+@media (max-width: 992px) {
+
+  .earned-section {
+    max-width: 720px;
+  }
+
+  .earned-section h2 {
+    font-size: 30px;
+  }
+}
+@media screen and (max-width: 1152px) {
+  .earned-section {
+    max-width: 820px;
+  }
+}
+
+
+
+
+/* Section */
+.modules-section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 60px 20px;
+}
+
+/* Module Layout */
+.module-row {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 50px;
+  margin-bottom: 60px;
+}
+
+/* Left Card */
+.module-card {
+  border: 2px solid rgb(10, 56, 124);
+  padding: 50px 40px;
+}
+
+.module-card small {
+  display: block;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+  color: rgb(10, 56, 124);
+  font-family: "Roboto", sans-serif;
+}
+
+.module-card h2 {
+  font-size: 22px;
+  line-height: 1.4;
+  font-family: "Saira", sans-serif;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  padding-left: 40px;
+}
+
+.timeline .line {
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgb(10, 56, 124);
+}
+
+.timeline .point {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid rgb(10, 56, 124);
+  background: transparent;
+  margin-bottom: 15px;
+}
+
+.timeline .content-time p {
+  font-size: 15px;
+  margin-bottom: 12px;
+  color: black;
+  font-family: "Roboto", sans-serif;
+}
+
+.timeline h4 {
+  margin-top: 12px;
+  color: #f0c16a;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .module-row {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline {
+    padding-left: 20px;
+  }
+
+  .module-card {
+    border-radius: 30px;
+  }
+}
+
+    </style>
+
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+
+</head>
+<body>
+
+      <!-- Navbar Section -->
+
+<header>
+  <div class="logo">
+    <a href="index.html">
+      <img src="public/new_logo_gcci.jpg" alt="Logo" class="logo-img">
+    </a>
+  </div>
+
+  <!-- HAMBURGER -->
+  <div class="hamburger" id="hamburger">☰</div>
+
+  <nav class="nav-links" id="mobileMenu">
+
+    <!-- CLOSE BUTTON -->
+    <div class="close-menu" id="closeMenu">✕</div>
+
+    <a href="index.html">Home</a>
+
+    <div class="dropdown">
+      <a href="#" class="dropdown-toggle">
+        About Us
+      </a>
+      <div class="dropdown-menu">
+        <a href="about.html">Company History</a>
+        <a href="directors.html">Our Director</a>
+        <a href="jounery.html">Our Journey</a>
+        <a href="awards.html">Awards And Certifications</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <a href="#" class="dropdown-toggle">
+        Services
+      </a>
+      <div class="dropdown-menu">
+        <a href="service1.html">Advocacy / Assessment / Capability Development / Recognition of Competitiveness</a>
+        <a href="service2.html">Liaison Global Expertise Technology Support / Industry Automation</a>
+        <a href="service3.html">Maintenance Software / Support IT / IoT / AI</a>
+        <a href="service4.html">TPM Software (Subscription Model)</a>
+      </div>
+    </div>
+
+    <a href="activity.html">Activity</a>
+    <a href="news.html">News</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="training_program.html">Training Program</a>
+
+    <!-- MOBILE CONTACT -->
+    <a href="contact.html" class="mobile-contact">Contact Us</a>
+  </nav>
+
+  <!-- DESKTOP BUTTON -->
+  <div class="nav-buttons">
+    <a href="contact.html" class="btn btn-primary">Contact us</a>
+  </div>
+</header>
+
+<script>
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const closeMenu = document.getElementById("closeMenu");
+
+  hamburger.onclick = () => mobileMenu.classList.add("show");
+  closeMenu.onclick = () => mobileMenu.classList.remove("show");
+
+  document.querySelectorAll(".dropdown-toggle").forEach(toggle => {
+  toggle.addEventListener("click", function () {
+
+    if (window.innerWidth <= 768) {
+      // ✅ mobile: close menu first, then allow navigation
+      mobileMenu.classList.remove("show");
+      return;
+    }
+
+    // desktop only
+    event.preventDefault();
+    this.nextElementSibling.classList.toggle("show");
+  });
+});
+</script>
+
+<!-- Hero Section -->
+
+<section class="banner">
+  <!-- Left dark image -->
+  <div class="left-bg"></div>
+
+  <!-- Curved orange shape -->
+  <!-- <div class="orange-curve"></div> -->
+
+  <!-- Circle image -->
+  <div class="circle-img">
+    <img src="public/temple.jpg" alt="Team">
+  </div>
+
+  <!-- Right content -->
+<div class="content">
+  <h1>
+    BUSINESS TRANSFORMATION<br>
+    LEADERS COURSE (TPM BTLC)
+  </h1>
+  <p>GLOBAL CORPORATE COUNCIL INDIA - GCCI / GCCI International LLP</p>
+</div>
+
+<div class="quote">
+  <p class="quote-text">
+    “Vision without action is a dream. Action without Vision is a nightmare.”
+  </p>
+  <span class="quote-author">~ Japanese Proverb</span>
+</div>
+
+
+<div class="event-info">
+  <span>
+    <i class="fa-solid fa-location-dot"></i>
+    JC Residency, Chokkikulam, Madurai, TN
+  </span>
+
+  <span>
+    <i class="fa-solid fa-calendar-days"></i>
+    09th to 13th Mar. 2026
+  </span>
+
+  <span>
+    <i class="fa-solid fa-clock"></i>
+    9.00 AM – 5.00 PM
+  </span>
+</div>
+
+
+</section>
+
+<section class="earned-section">
+  <h2>GLOBAL CORPORATE COUNCIL INDIA - GCCI / GCCI International LLP <br/>
+Global Partners for End to End Business Solutions
+</h2>
+
+  <p>
+    GCCI Introduced for the 2nd time in History the latest insights by Japanese concepts to Learn the breakthrough strategicalskills to takeoff TPM advancement in the organization. (5 Day Intensive Workshop Followed By 5 Week Online Follow-up course)
+  </p>
+  <p>
+   FACULTY PROFILE - 
+ Yuvaraj Sithaiyan <br/>
+Conducted  Trainings  Approx.  7,21,000+  Man  Hrs.  for 1,06,000  people  across  the  Country  and  Global  level. Supported for accomplishing 52 JIPM Awards ( Special Award + Consistency Award + Excellence Awards)
+
+  </p>
+
+  <div class="btn-group">
+  <button class="btn-train primary" id="enrollBtn">Apply Now</button>
+  <button class="btn-train secondary" id="brochureBtn">View Brochure</button>
+</div>
+</section>
+
+<script>
+  // Enroll Now - Google Form
+  document.getElementById("enrollBtn").addEventListener("click", function () {
+    window.open(
+      "https://docs.google.com/forms/d/e/1FAIpQLSe5rGZ6b-64oLPySbqbYj7aPTFooTgZ52d4OQFLEB32L8ULBA/viewform?usp=header",
+      "_blank"
+    );
+  });
+
+  // View Brochure - PDF
+  document.getElementById("brochureBtn").addEventListener("click", function () {
+    window.open(
+      "public/training_program_1.pdf",
+      "_blank"
+    );
+  });
+</script>
+
+
+
+<section class="modules-section">
+
+  <!-- <div class="header">
+    <span class="badge">TRAINING MODULES</span>
+    <p>Our training program is divided into several key modules:</p>
+  </div> -->
+
+  <div class="module-row">
+    <div class="module-card">
+      <small>MODULE 1</small>
+      <h2>PROGRAM COVERAGE</h2>
+    </div>
+
+    <div class="timeline">
+      <div class="line"></div>
+      <div class="content-time">
+        <p>Corporate and Plant level TPM Management Strategies & Systems for TPM advancement.</p>
+        <p>Policy Management & Strategies towards Vision, Mission.</p>
+        <p>TPM Synchronization with various Business Processes</p>
+        <p>TPM Hybrid Org. structure and its approach</p>
+        <p>Hoshin Kanri-with Chain linking function</p>
+        <p>TPM objectives & all Pillar objectives, KPI and KAI, review mechanism.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="module-row">
+    <div class="module-card">
+      <small>MODULE 2</small>
+      <h2>THE KEY OFFERING INCLUDED</h2>
+    </div>
+
+    <div class="timeline">
+      <div class="line"></div>
+      <div class="content-time">
+        <p>An Opportunity to learn an introductory session about Evolution and deepening of TPM Based on Fusion of TPM and TPS</p>
+        <p>5-week Online follow-up Course worth of Rs. 1,20,000</p>
+        <p>Course Certificate issued by GCCI TPM Consulting Company</p>
+        <p>Training Course Material with Exercise Formats and Stationaries</p>
+        <p>Accommodation in a 5-star equivalent Hotel Morning Break Fast + Lunch + Dinner + 2 Tea & Evening 1 High Tea</p>
+        <p>Pocket Planner diary + File or Bag for Document Storage</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="module-row">
+    <div class="module-card">
+      <small>MODULE 3</small>
+      <h2>WHY LEARN WITH GCCI</h2>
+    </div>
+
+    <div class="timeline">
+      <div class="line"></div>
+      <div class="content-time">
+        <p>The design of this training program and course is an 	influential course envisioned to impart thorough 	knowledge to all delegates the practical approach & implementation	skills	necessary	to	implement 	strategies at various levels.</p>
+        <p>Subjects are led by leaders who involved and
+supported Various academic researches at Global level in the forefront.
+</p>
+<p>Join with a global community & network with peers 	across the Indian & Global experts who implement 	TPM.
+</p>
+<p>Subject scheduled is suited to the needs of your
+organization Earn a certificate to evidence your learning.
+</p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- Footer -->
+        <div id="footer-container"></div>
+        <script src="footer.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GCCI</title>
+<link rel="icon" type="image/png" href="public/favicon.jpg">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+  
+ /* ============================================
+           NAVIGATION BAR
+           ============================================ */
+header {
+  position: relative;
+  padding: 10px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  z-index: 100;
+}
+
+.logo-img {
+  width: 250px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #000;
+  font-size: 17px;
+  font-family: "Roboto", sans-serif;
+}
+
+.nav-links a:hover {
+  color: blue;
+}
+
+.nav-buttons {
+  display: flex;
+}
+
+/* DROPDOWN DESKTOP */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 25px;
+  left: -40px;
+  background: #111;
+  display: none;
+  flex-direction: column;
+  z-index: 200;
+}
+
+.dropdown-menu a {
+  padding: 10px 20px;
+     color: rgba(255, 255, 255, 0.8);
+     text-decoration: none;
+     font-size: 15px;
+     white-space: nowrap;
+}
+.dropdown-menu a:hover {
+     background: rgb(94, 153, 241);
+     color: #000;
+ }
+
+.dropdown:hover .dropdown-menu {
+  display: flex;
+}
+
+/* BUTTON */
+.btn-primary {
+  background: #0a3d91;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+}
+
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.close-menu {
+  display: none;
+  font-size: 24px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.arrow {
+  font-size: 12px;
+  margin-left: auto;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    z-index: 9999;
+    justify-content: space-between;
+     padding: 10px 12px;
+  }
+
+  body {
+    padding-top: 90px;
+  }
+
+   .logo-img {
+    width: 250px;
+    height: auto;
+  }
+
+  .nav-links a {
+  text-decoration: none;
+  color: #000;
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  margin-left: 10px;
+}
+
+
+  .hamburger {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;          /* 👈 IMPORTANT */
+    height: 44px;
+
+    font-size: 30px;
+    line-height: 1;
+    color: #000;
+
+    margin-left: auto;   /* 👈 PUSH TO RIGHT */
+    cursor: pointer;
+    margin-right: 20px
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    height: 100vh;
+    background: #fff;
+    flex-direction: column;
+    padding: 80px 20px;
+    gap: 18px;
+    transition: 0.4s;
+    z-index: 9998;
+    display: none;
+  }
+
+  .nav-links.show {
+    display: flex;
+    left: 0;
+  }
+
+  .nav-buttons {
+    display: none;
+  }
+
+  .close-menu {
+    display: block;
+  }
+
+  /* MOBILE DROPDOWN */
+  .dropdown-menu {
+    position: static;
+    background: #f5f5f5;
+    display: none;
+    padding-left: 15px;
+  }
+
+  .dropdown-menu.show {
+    display: block;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: none;
+  }
+
+  .dropdown-toggle {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 769px) {
+  .arrow,
+  .mobile-contact {
+    display: none;
+  }
+}
+
+
+</style>
+
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Cinzel:wght@400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* ================= RESET ================= */
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:#fff;
+  overflow-x:hidden;
+}
+
+/* ================= HERO ================= */
+.about-section{
+  position:relative;
+  width:100%;
+  height:70vh;
+  background:url("images/img_23.jpg") center/cover no-repeat;
+  display:flex;
+  align-items:center;
+}
+.about-overlay{
+  width:100%;
+  height:100%;
+  background:linear-gradient(to right,rgba(0,51,153,.6),rgba(0,51,153,.2));
+  display:flex;
+  align-items:center;
+  padding-left:80px;
+}
+.about-text{
+  color:#fff;
+  max-width:500px;
+  animation:fadeInLeft 1s ease;
+}
+.about-text h1{font-size:3rem;margin-bottom:16px; font-family: "Saira", sans-serif;}
+.about-text p{font-size:1rem;margin-bottom:24px; font-family: "Roboto", sans-serif;}
+.about-link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 20px;
+  border-radius:30px;
+  border:1px solid #fff;
+  color:#fff;
+  text-decoration:none;
+  transition:.3s;
+  font-family: "Roboto", sans-serif;
+}
+.about-link:hover{background:#fff;color:#000}
+
+@keyframes fadeInLeft{
+  from{opacity:0;transform:translateX(-50px)}
+  to{opacity:1;transform:translateX(0)}
+}
+
+/* ================= GALLERY ================= */
+.gallery-section{
+  padding:60px 80px;
+  background:#f3f7fc;
+}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:28px;
+}
+.gallery-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:12px;
+  cursor:pointer;
+  transition:.4s;
+}
+.gallery-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 15px 40px rgba(0,0,0,.2);
+}
+.gallery-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:.5s;
+}
+.gallery-card:hover .gallery-img{transform:scale(1.1)}
+
+.gallery-content{
+  position:absolute;
+  bottom:-60%;
+  width:100%;
+  height:60%;
+  background:rgb(10, 56, 124,.85);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+  transition:.5s;
+}
+.gallery-card:hover .gallery-content{bottom:0}
+
+.gallery-content h3{
+  font-size:16px;
+  font-weight:500;
+  font-family: "Saira", sans-serif;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:992px){
+  .gallery-grid{grid-template-columns:1fr}
+  .gallery-section{padding:40px 24px}
+}
+@media(max-width:768px){
+  .about-overlay{padding-left:20px;background:rgba(0,0,0,.7)}
+  .about-text h1{font-size:2.2rem}
+}
+</style>
+</head>
+
+<body>
+
+  <!-- Navbar Section -->
+
+<header>
+  <div class="logo">
+    <a href="index.html">
+      <img src="public/new_logo_gcci.jpg" alt="Logo" class="logo-img">
+    </a>
+  </div>
+
+  <!-- HAMBURGER -->
+  <div class="hamburger" id="hamburger">☰</div>
+
+  <nav class="nav-links" id="mobileMenu">
+
+    <!-- CLOSE BUTTON -->
+    <div class="close-menu" id="closeMenu">✕</div>
+
+    <a href="index.html">Home</a>
+
+    <div class="dropdown">
+      <a href="#" class="dropdown-toggle">
+        About Us 
+      </a>
+      <div class="dropdown-menu">
+        <a href="about.html">Company History</a>
+        <a href="directors.html">Our Director</a>
+        <a href="jounery.html">Our Journey</a>
+        <a href="awards.html">Awards And Certifications</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <a href="#" class="dropdown-toggle">
+        Services 
+      </a>
+      <div class="dropdown-menu">
+        <a href="service1.html">Advocacy / Assessment / Capability Development / Recognition of Competitiveness</a>
+        <a href="service2.html">Liaison Global Expertise Technology Support / Industry Automation</a>
+        <a href="service3.html">Maintenance Software / Support IT / IoT / AI</a>
+        <a href="service4.html">TPM Software (Subscription Model)</a>
+      </div>
+    </div>
+
+    <a href="activity.html">Activity</a>
+    <a href="news.html">News</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="training_program.html">Training Program</a>
+
+    <!-- MOBILE CONTACT -->
+    <a href="contact.html" class="mobile-contact">Contact Us</a>
+  </nav>
+
+  <!-- DESKTOP BUTTON -->
+  <div class="nav-buttons">
+    <a href="contact.html" class="btn btn-primary">Contact us</a>
+  </div>
+</header>
+
+<script>
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const closeMenu = document.getElementById("closeMenu");
+
+  hamburger.onclick = () => mobileMenu.classList.add("show");
+  closeMenu.onclick = () => mobileMenu.classList.remove("show");
+
+  document.querySelectorAll(".dropdown-toggle").forEach(toggle => {
+  toggle.addEventListener("click", function () {
+
+    if (window.innerWidth <= 768) {
+      // ✅ mobile: close menu first, then allow navigation
+      mobileMenu.classList.remove("show");
+      return;
+    }
+
+    // desktop only
+    event.preventDefault();
+    this.nextElementSibling.classList.toggle("show");
+  });
+});
+</script>
+
+<!-- HERO -->
+<section class="about-section">
+  <div class="about-overlay">
+    <div class="about-text">
+      <h1>Our Gallery</h1>
+      <p>A Journey of Excellence — Captured in Every Moment, Framed with Pride</p>
+      <!-- <a href="index.html" class="about-link">
+        Back to Home <i data-lucide="arrow-right"></i>
+      </a> -->
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section">
+  <div class="gallery-grid" id="galleryGrid"></div>
+</section>
+
+<script>
+lucide.createIcons();
+
+/* ================= GALLERY DATA ================= */
+const galleryItems = [
+  { src:"images/img_22.jpg", title:"JIPM Assessment with Sensei Ichikawa San & Sensei Nomura San" },
+  { src:"images/img_4.jpg", title:"COCA COLA JIPM Assessment with Japanese Sensei" },
+  { src:"images/img_29.jpeg", title:"Conducting MAKIGAMI Analysis in Rucha Engineers" },
+  { src:"images/img_31.jpeg", title:"Conducting MAKIGAMI Analysis in Rucha Engineers" },
+  { src:"images/img_42.jpeg", title:"5S Seminar Conducted at RIJ Engineering Pvt Ltd." },
+
+  { src:"images/event1.jpg", title:"Event Conducted by GCCI at Coimbatore" },
+  { src:"images/event2.jpg", title:"Event Conducted by GCCI at Coimbatore" },
+  { src:"images/event3.jpg", title:"Event Conducted by GCCI at Aurangabad" },
+  { src:"images/event4.jpg", title:"Event Conducted by GCCI at Aurangabad" },
+  { src:"images/event5.jpg", title:"Event Conducted by GCCI at Ahmedabad" },
+  { src:"images/event6.jpg", title:"Event Conducted by GCCI at Ahmedabad" },
+
+  { src:"images/img_33.jpeg", title:"TPM Kick off at MMForgings" },
+  { src:"images/img_37.jpg", title:"ABI Showa tech JIPM Assessment" },
+  { src:"images/img_38.jpg", title:"JIPM Assessment Harsha Engg. International" },
+  { src:"images/img_39.jpg", title:"TPM Review at WAR ROOM" },
+  { src:"images/img_40.jpg", title:"Lean Tour Japan" },
+  { src:"images/img_11.jpg", title:"Business Excellence Assessment in SAIL" },
+  { src:"images/img_41.jpg", title:"NIPPON Steel - Japan Plant Visit" },
+  { src:"images/img_18.jpg", title:"TPM Facilitators course (CII)" }
+];
+
+/* ================= RENDER GALLERY ================= */
+const grid = document.getElementById("galleryGrid");
+
+galleryItems.forEach(item=>{
+  const card = document.createElement("div");
+  card.className="gallery-card";
+  card.innerHTML=`
+    <img src="${item.src}" alt="${item.title}" class="gallery-img">
+    <div class="gallery-content">
+      <h3>${item.title}</h3>
+    </div>
+  `;
+  grid.appendChild(card);
+});
+</script>
+
+  <!-- Footer -->
+<div id="footer-container"></div>
+<script src="footer.js"></script>  
+
+</body>
+</html>

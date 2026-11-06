@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCCI</title>
+<link rel="icon" type="image/png" href="public/favicon.jpg">
+
+<style>
+  
+ /* ============================================
+           NAVIGATION BAR
+           ============================================ */
+header {
+  position: relative;
+  padding: 10px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  z-index: 100;
+}
+
+.logo-img {
+  width: 250px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #000;
+  font-size: 17px;
+  font-family: "Roboto", sans-serif;
+}
+
+.nav-links a:hover {
+  color: blue;
+}
+
+.nav-buttons {
+  display: flex;
+}
+
+/* DROPDOWN DESKTOP */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 25px;
+  left: -40px;
+  background: #111;
+  display: none;
+  flex-direction: column;
+  z-index: 200;
+}
+
+.dropdown-menu a {
+  padding: 10px 20px;
+     color: rgba(255, 255, 255, 0.8);
+     text-decoration: none;
+     font-size: 15px;
+     white-space: nowrap;
+}
+.dropdown-menu a:hover {
+     background: rgb(94, 153, 241);
+     color: #000;
+ }
+
+.dropdown:hover .dropdown-menu {
+  display: flex;
+}
+
+/* BUTTON */
+.btn-primary {
+  background: #0a3d91;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+}
+
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.close-menu {
+  display: none;
+  font-size: 24px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.arrow {
+  font-size: 12px;
+  margin-left: auto;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    z-index: 9999;
+    justify-content: space-between;
+     padding: 10px 12px;
+  }
+
+  body {
+    padding-top: 90px;
+  }
+
+   .logo-img {
+    width: 250px;
+    height: auto;
+  }
+
+  .hamburger {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;          /* 👈 IMPORTANT */
+    height: 44px;
+
+    font-size: 30px;
+    line-height: 1;
+    color: #000;
+
+    margin-left: auto;   /* 👈 PUSH TO RIGHT */
+    cursor: pointer;
+    margin-right: 20px
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    height: 100vh;
+    background: #fff;
+    flex-direction: column;
+    padding: 80px 20px;
+    gap: 18px;
+    transition: 0.4s;
+    z-index: 9998;
+    display: none;
+  }
+
+  .nav-links a {
+  text-decoration: none;
+  color: #000;
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  margin-left: 10px;
+}
+
+  .nav-links.show {
+    display: flex;
+    left: 0;
+  }
+
+  .nav-buttons {
+    display: none;
+  }
+
+  .close-menu {
+    display: block;
+  }
+
+  /* MOBILE DROPDOWN */
+  .dropdown-menu {
+    position: static;
+    background: #f5f5f5;
+    display: none;
+    padding-left: 15px;
+  }
+
+  .dropdown-menu.show {
+    display: block;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: none;
+  }
+
+  .dropdown-toggle {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 769px) {
+  .arrow,
+  .mobile-contact {
+    display: none;
+  }
+}
+
+
+</style>
+
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Saira:wght@400;700&display=swap');
+
+/* ================= ROOT ================= */
+:root{
+  --primary-green:#10b981;
+  --primary-light:#d1fae5;
+  --text-dark:#111827;
+  --text-grey:#4b5563;
+}
+
+/* ================= RESET ================= */
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:Roboto, sans-serif;
+  background:#fff;
+  color:var(--text-dark);
+  overflow-x:hidden;
+}
+
+/* ================= COMMON ================= */
+.container{
+  max-width:1600px;
+  margin:auto;
+  padding:0 20px;
+}
+
+/* ================= HERO ================= */
+.journey-hero{
+  padding:30px 20px;
+  text-align:center;
+  background:radial-gradient(circle,rgb(223, 234, 250) 0%,#fff 60%);
+}
+.hero-badge{
+  display:inline-block;
+  border:1px solid rgb(10,56,124);
+  color:rgb(10,56,124);
+  padding:8px 22px;
+  border-radius:50px;
+  font-weight:700;
+  letter-spacing:2px;
+  margin-bottom:20px;
+}
+.main-title{
+  font-family:Saira, sans-serif;
+  font-size:5rem;
+  line-height:1;
+}
+.desc-text{
+  max-width:600px;
+  margin:15px auto 0;
+  color:rgb(10,56,124);
+  font-size:1.2rem;
+}
+
+/* ================= TIMELINE ================= */
+.journey-section{
+  position:relative;
+}
+
+.timeline-track{
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:50%;
+  width:2px;
+  transform:translateX(-50%);
+  background:#e5e7eb;
+}
+.track-fill{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:0%;
+  background:rgb(10,56,124);
+}
+
+.timeline-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:140px 0;
+  padding:0 60px;
+}
+.timeline-row.reverse{
+  flex-direction:row-reverse;
+}
+
+.row-content,.row-image{
+  width:45%;
+  position:relative;
+}
+
+.huge-year{
+  font-family:Saira, sans-serif;
+  font-size:9rem;
+  -webkit-text-stroke:2px gray;
+  color:transparent;
+  position:absolute;
+  top:-100px;
+  left:-20px;
+  opacity:.5;
+}
+
+.text-card{
+  background:#fff;
+  padding:40px;
+  border-radius:20px;
+  box-shadow:0 20px 40px rgba(0,0,0,.1);
+}
+.text-card h3{
+  font-family:Saira, sans-serif;
+  font-size:2rem;
+  margin-bottom:10px;
+}
+.text-card p{
+  color:var(--text-grey);
+  line-height:1.6;
+}
+
+.row-image{
+  height:400px;
+}
+.img-mask{
+  height:100%;
+  border-radius:24px;
+  overflow:hidden;
+  box-shadow:20px 20px 0 var(--primary-light);
+}
+.timeline-row.reverse .img-mask{
+  box-shadow:-20px 20px 0 var(--primary-light);
+}
+.img-mask img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* ================= CURSOR ================= */
+.cursor-dot,.cursor-outline{
+  position:fixed;
+  pointer-events:none;
+  border-radius:50%;
+  z-index:999;
+}
+.cursor-dot{
+  width:8px;
+  height:8px;
+  background:var(--primary-green);
+}
+.cursor-outline{
+  width:40px;
+  height:40px;
+  border:1px solid rgba(16,185,129,.5);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 320px) {
+
+  .journey-hero {
+    padding: 80px 16px;
+  }
+
+  .main-title {
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+
+  .desc-text {
+    font-size: 0.95rem;
+  }
+
+  .timeline-row {
+    margin-top: 80px;
+    margin-bottom: 80px;
+    padding: 0 10px;
+  }
+
+  .huge-year {
+    font-size: 3.5rem;
+    top: -40px;
+    left: 0;
+  }
+
+  .text-card {
+    padding: 22px;
+  }
+
+  .text-card h3 {
+    font-size: 1.4rem;
+  }
+
+  .row-image {
+    height: 240px;
+  }
+}
+@media (max-width: 480px) {
+
+  .journey-hero {
+    padding: 20px 20px;
+  }
+
+  .main-title {
+    font-size: 2.4rem;
+  }
+
+  .desc-text {
+    font-size: 1rem;
+  }
+
+  .timeline-row {
+    margin-top: 100px;
+    margin-bottom: 90px;
+    padding: 0 14px;
+  }
+
+  .huge-year {
+    font-size: 4.5rem;
+    top: -45px;
+  }
+
+  .row-image {
+    height: 280px;
+  }
+}
+@media (max-width: 576px) {
+
+  .main-title {
+    font-size: 2.8rem;
+  }
+
+  .desc-text {
+    font-size: 1.05rem;
+  }
+
+  .timeline-row {
+    padding: 0 20px;
+  }
+
+  .text-card {
+    padding: 28px;
+  }
+
+  .huge-year {
+    font-size: 5.2rem;
+  }
+
+  .row-image {
+    height: 320px;
+  }
+}
+@media (max-width: 768px) {
+
+  .journey-hero {
+    padding: 20px 24px;
+  }
+
+  .main-title {
+    font-size: 3.2rem;
+  }
+
+  .desc-text {
+    font-size: 1.1rem;
+  }
+
+  .timeline-row,
+  .timeline-row.reverse {
+    flex-direction: column-reverse;
+    gap: 40px;
+  }
+
+    /* .timeline-row,
+  .timeline-row.reverse {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  } */
+  .huge-year {
+    font-size: 6rem;
+    top: -50px;
+  }
+
+    .row-content,
+  .row-image {
+    width: 100%;
+  }
+}
+@media (max-width: 992px) {
+
+
+  .main-title {
+    font-size: 3.6rem;
+  }
+
+  .timeline-track {
+    display: none;
+  }
+
+  .timeline-row {
+    margin-top: 120px;
+    margin-bottom: 100px;
+  }
+
+  .huge-year {
+    font-size: 6rem;
+  }
+}
+@media screen and (max-width: 1152px) {
+
+
+  .main-title {
+    font-size: 2rem;
+  }
+}
+
+
+</style>
+
+</head>
+<body>
+
+<!-- Navbar Section -->
+
+<header>
+  <div class="logo">
+    <a href="index.html">
+      <img src="public/new_logo_gcci.jpg" alt="Logo" class="logo-img">
+    </a>
+  </div>
+
+  <!-- HAMBURGER -->
+  <div class="hamburger" id="hamburger">☰</div>
+
+  <nav class="nav-links" id="mobileMenu">
+
+    <!-- CLOSE BUTTON -->
+    <div class="close-menu" id="closeMenu">✕</div>
+
+    <a href="index.html">Home</a>
+
+    <div class="dropdown">
+      <a href="about.html" class="dropdown-toggle">
+        About Us 
+      </a>
+      <div class="dropdown-menu">
+        <a href="about.html">Company History</a>
+        <a href="directors.html">Our Director</a>
+        <a href="jounery.html">Our Journey</a>
+        <a href="awards.html">Awards And Certifications</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <a href="service1.html" class="dropdown-toggle">
+        Services 
+      </a>
+      <div class="dropdown-menu">
+        <a href="service1.html">Advocacy / Assessment / Capability Development / Recognition of Competitiveness</a>
+        <a href="service2.html">Liaison Global Expertise Technology Support / Industry Automation</a>
+        <a href="service3.html">Maintenance Software / Support IT / IoT / AI</a>
+        <a href="service4.html">TPM Software (Subscription Model)</a>
+      </div>
+    </div>
+
+    <a href="activity.html">Activity</a>
+    <a href="news.html">News</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="training_program.html">Training Program</a>
+
+    <!-- MOBILE CONTACT -->
+    <a href="contact.html" class="mobile-contact">Contact Us</a>
+  </nav>
+
+  <!-- DESKTOP BUTTON -->
+  <div class="nav-buttons">
+    <a href="contact.html" class="btn btn-primary">Contact us</a>
+  </div>
+</header>
+
+<script>
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const closeMenu = document.getElementById("closeMenu");
+
+  hamburger.onclick = () => mobileMenu.classList.add("show");
+  closeMenu.onclick = () => mobileMenu.classList.remove("show");
+
+  document.querySelectorAll(".dropdown-toggle").forEach(toggle => {
+  toggle.addEventListener("click", function () {
+
+    if (window.innerWidth <= 768) {
+      // ✅ mobile: close menu first, then allow navigation
+      mobileMenu.classList.remove("show");
+      return;
+    }
+
+    // desktop only
+    event.preventDefault();
+    this.nextElementSibling.classList.toggle("show");
+  });
+});
+</script>
+
+
+<!-- Jounery Section -->
+
+<div class="cursor-dot"></div>
+<div class="cursor-outline"></div>
+
+<section class="journey-hero">
+  <div class="container">
+    <div class="hero-badge">EST. 2017</div>
+    <h1 class="main-title">A Legacy of Transformation</h1>
+    <p class="desc-text">From India to the World — Leading Excellence Transformations</p>
+  </div>
+</section>
+
+<section class="journey-section">
+
+<div class="timeline-track">
+  <div class="track-fill"></div>
+</div>
+
+<div class="container">
+
+<!-- ROW -->
+<div class="timeline-row">
+  <div class="row-content">
+    <div class="huge-year">2017</div>
+    <div class="text-card">
+      <h3>Foundation Year</h3>
+      <p>Global Corporate Council India (GCCI) was established in Pune, India, with a mission to drive business excellence, TPM, TQM, and Lean-based transformations across industries.</p>
+    </div>
+  </div>
+  <div class="row-image">
+    <div class="img-mask">
+      <img src="images/img_17.jpg">
+    </div>
+  </div>
+</div>
+
+<!-- ROW -->
+<div class="timeline-row reverse">
+  <div class="row-content">
+    <div class="huge-year">2018</div>
+    <div class="text-card">
+      <h3>Formation of TPM Consulting Division</h3>
+      <p>GCCI formally structured its TPM (Total Productive Maintenance) and Operational Excellence Consulting Division, initiating partnerships with major Indian manufacturing organizations.</p>
+    </div>
+  </div>
+  <div class="row-image">
+    <div class="img-mask">
+      <img src="images/img_4.jpg">
+    </div>
+  </div>
+</div>
+
+<!-- ROW -->
+<div class="timeline-row">
+  <div class="row-content">
+    <div class="huge-year">2019</div>
+    <div class="text-card">
+      <h3>Launch of Capability Development & Assessment Services</h3>
+      <p>Introduced TPM Health Check-Up Assessments, Capability Development Programs, and Business Excellence Training Modules for organizations across India.</p>
+    </div>
+  </div>
+  <div class="row-image">
+    <div class="img-mask">
+      <img src="images/img_21.jpg">
+    </div>
+  </div>
+</div>
+
+<!-- ROW -->
+<div class="timeline-row reverse">
+  <div class="row-content">
+    <div class="huge-year">2020</div>
+    <div class="text-card">
+      <h3>Global Collaboration and Technology Integration</h3>
+      <p>GCCI expanded globally by initiating strategic partnerships with overseas experts and organizations for AI-based, IoT, and automation-driven TPM solutions.</p>
+    </div>
+  </div>
+  <div class="row-image">
+    <div class="img-mask">
+      <img src="images/img_19.jpg">
+    </div>
+  </div>
+</div>
+
+<!-- ROW -->
+<div class="timeline-row">
+  <div class="row-content">
+    <div class="huge-year">2021</div>
+    <div class="text-card">
+      <h3>Digital TPM and Visual Management Innovation</h3>
+      <p>Developed Visual Management Systems (VMS) and introduced digital TPM frameworks integrating smart manufacturing concepts.</p>
+    </div>
+  </div>
+  <div class="row-image">
+    <div class="img-mask">
+      <img src="images/img_18.jpg">
+    </div>
+  </div>
+</div>
+
+<!-- ROW -->
+<div class="timeline-row reverse">
+  <div class="row-content">
+    <div class="huge-year">2022</div>
+    <div class="text-card">
+      <h3>Global Recognition and Expansion</h3>
+      <p>GCCI achieved recognition for its contribution to 69+ JIPM TPM Awards through consulting support and collaboration with multiple industries.</p>
+    </div>
+  </div>
+  <div class="row-image">
+    <div class="img-mask">
+      <img src="images/img_16.jpg">
+    </div>
+  </div>
+</div>
+
+<!-- ROW -->
+<div class="timeline-row">
+  <div class="row-content">
+    <div class="huge-year">2023</div>
+    <div class="text-card">
+      <h3>Rebranding and Globalization</h3>
+      <p>Rebranded as GCCI International LLP, reflecting a global consulting vision with operations and collaborations across Japan, Germany, the U.S., and Australia.</p>
+    </div>
+  </div>
+  <div class="row-image">
+    <div class="img-mask">
+      <img src="images/img_14.jpg">
+    </div>
+  </div>
+</div>
+
+<!-- ROW -->
+<div class="timeline-row reverse">
+  <div class="row-content">
+    <div class="huge-year">2024</div>
+    <div class="text-card">
+      <h3>Institutionalization of GCCI Learning & Certification</h3>
+      <p>"Initiated plans for GCCI TPM Academy, focusing on TPM, TQM, RCM, and Business Excellence certifications in collaboration with academic and industrial partners.</p>
+    </div>
+  </div>
+  <div class="row-image">
+    <div class="img-mask">
+      <img src="images/img_6.jpg">
+    </div>
+  </div>
+</div>
+
+<!-- ROW -->
+<div class="timeline-row">
+  <div class="row-content">
+    <div class="huge-year">2025</div>
+    <div class="text-card">
+      <h3>Digital Transformation & AI Integration</h3>
+      <p>Launched initiatives for AI-supported TPM deployment, digital dashboards, and data-driven assessment methodologies to align with Industry 4.0 and Smart Factory frameworks.</p>
+    </div>
+  </div>
+  <div class="row-image">
+    <div class="img-mask">
+      <img src="images/img_9.jpg">
+    </div>
+  </div>
+</div>
+
+<!-- continue rows same pattern -->
+
+</div>
+</section>
+
+<script>
+/* CURSOR */
+const dot=document.querySelector('.cursor-dot');
+const outline=document.querySelector('.cursor-outline');
+
+window.addEventListener('mousemove',e=>{
+  dot.style.left=e.clientX-4+'px';
+  dot.style.top=e.clientY-4+'px';
+  outline.style.left=e.clientX-20+'px';
+  outline.style.top=e.clientY-20+'px';
+});
+
+/* TIMELINE FILL */
+const section=document.querySelector('.journey-section');
+const fill=document.querySelector('.track-fill');
+
+window.addEventListener('scroll',()=>{
+  const rect=section.getBoundingClientRect();
+  const height=section.offsetHeight-window.innerHeight;
+  let progress=(-rect.top/height)*100;
+  progress=Math.max(0,Math.min(100,progress));
+  fill.style.height=progress+'%';
+});
+</script>
+
+
+
+<!-- Footer -->
+<div id="footer-container"></div>
+<script src="footer.js"></script>
+    
+</body>
+</html>
