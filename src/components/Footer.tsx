@@ -166,16 +166,18 @@ export default function Footer() {
           <div>
             © 2026 GCCI International LLP. All Rights Reserved. Formerly Global Corporate Council India.
           </div>
-          <div className="flex items-center gap-6">
-            <Link href="/" className="hover:text-blue-700 font-medium transition-colors">
-              Home
-            </Link>
-            <Link href="/about" className="hover:text-blue-700 font-medium transition-colors">
-              About Us
-            </Link>
-            <Link href="/contact" className="hover:text-blue-700 font-medium transition-colors">
-              Contact Portal
-            </Link>
+          <div className="text-xs sm:text-[13px] text-slate-500 font-medium">
+            Designed and Developed by{" "}
+            <span className="text-slate-800 font-semibold tracking-wide">
+            <a
+              href="https://qirotec.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-800 font-semibold tracking-wide hover:text-blue-700 underline-offset-4 hover:underline transition-colors"
+            >
+              Qiro Tech Innovation Pvt Ltd
+            </span>
+            </a>
           </div>
         </div>
       </div>

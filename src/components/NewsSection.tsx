@@ -83,6 +83,7 @@ export default function NewsSection() {
           <div>
             <h2 className="text-[34px] sm:text-[40px] lg:text-[42px] font-semibold tracking-tight text-[#1f1d1d] leading-tight">
               Latest News
+              News
             </h2>
           </div>
           <Link
@@ -97,6 +98,7 @@ export default function NewsSection() {
         {/* 2-Column News Layout Matching Second Image */}
         <div className="mt-10 sm:mt-12 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           {/* Left Column: Main News with Image (Matching First Image) */}
+          {/* Left Column: Main News with Image */}
           <div
             onClick={() => setSelectedArticle(featuredNews)}
             className="lg:col-span-6 group cursor-pointer"
@@ -113,6 +115,11 @@ export default function NewsSection() {
               <div className="absolute top-4 right-4 z-10 btn-arrow btn-arrow-grey shadow-md">
                 <ArrowUpRight className="arrow-primary" />
                 <ArrowUpRight className="arrow-secondary" />
+              <div className="absolute top-4 right-4 z-10 pointer-events-none">
+                <div className="btn-arrow btn-arrow-grey shadow-md rounded-xl">
+                  <ArrowUpRight className="arrow-primary" />
+                  <ArrowUpRight className="arrow-secondary" />
+                </div>
               </div>
             </div>
 

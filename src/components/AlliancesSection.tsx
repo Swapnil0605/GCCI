@@ -236,33 +236,33 @@ export default function AlliancesSection() {
 
           {/* Marquee Carousel (Default View) */}
           {!showAllClients && (
-            <div className="relative overflow-hidden py-4 border-y border-slate-100 bg-slate-50/50 rounded-xl">
-              <div className="animate-marquee flex items-center gap-8">
+            <div className="relative overflow-hidden py-8 sm:py-10 border-y border-slate-200/80 bg-slate-50/60 rounded-2xl [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]">
+              <div className="animate-marquee flex items-center gap-6 sm:gap-8">
                 {clientLogos.map((client, index) => (
                   <div
                     key={`${client.id}-${index}`}
-                    className="relative h-16 w-36 shrink-0 bg-white rounded-lg border border-slate-200 p-2 shadow-2xs flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"
+                    className="relative h-[135px] sm:h-[150px] w-64 sm:w-72 lg:w-80 shrink-0 bg-white rounded-2xl border border-black/[0.08] px-7 py-4 shadow-[0_4px_16px_rgba(0,0,0,0.06)] flex items-center justify-center transition-all duration-[450ms] ease-out hover:shadow-[0_10px_25px_rgba(0,0,0,0.1)] hover:border-[#0a3d91]/40 hover:-translate-y-1.5 group"
                   >
                     <Image
                       src={`/images/clients/${client.file}`}
                       alt={client.alt}
                       fill
-                      className="object-contain p-2"
+                      className="object-contain p-3 sm:p-4 transition-transform duration-[450ms] group-hover:scale-105"
                       loading="lazy"
                     />
                   </div>
                 ))}
                 {/* Duplicate set for seamless continuous marquee loop */}
-                {clientLogos.slice(0, 20).map((client, index) => (
+                {clientLogos.map((client, index) => (
                   <div
                     key={`dup-${client.id}-${index}`}
-                    className="relative h-16 w-36 shrink-0 bg-white rounded-lg border border-slate-200 p-2 shadow-2xs flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"
+                    className="relative h-[135px] sm:h-[150px] w-64 sm:w-72 lg:w-80 shrink-0 bg-white rounded-2xl border border-black/[0.08] px-7 py-4 shadow-[0_4px_16px_rgba(0,0,0,0.06)] flex items-center justify-center transition-all duration-[450ms] ease-out hover:shadow-[0_10px_25px_rgba(0,0,0,0.1)] hover:border-[#0a3d91]/40 hover:-translate-y-1.5 group"
                   >
                     <Image
                       src={`/images/clients/${client.file}`}
                       alt={client.alt}
                       fill
-                      className="object-contain p-2"
+                      className="object-contain p-3 sm:p-4 transition-transform duration-[450ms] group-hover:scale-105"
                       loading="lazy"
                     />
                   </div>
@@ -273,18 +273,18 @@ export default function AlliancesSection() {
 
           {/* Expanded 41 Clients Grid View */}
           {showAllClients && (
-            <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-6 sm:p-8">
-              <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4">
+            <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50/80 p-6 sm:p-8">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 sm:gap-6">
                 {clientLogos.map((client) => (
                   <div
                     key={client.id}
-                    className="relative h-20 w-full rounded-lg border border-slate-200 bg-white p-2 shadow-2xs transition-all hover:shadow-md hover:border-blue-400 flex items-center justify-center"
+                    className="relative h-32 sm:h-36 lg:h-[145px] w-full rounded-2xl border border-black/[0.08] bg-white px-6 py-4 shadow-[0_4px_14px_rgba(0,0,0,0.06)] transition-all duration-[450ms] ease-out hover:shadow-[0_10px_25px_rgba(0,0,0,0.1)] hover:border-[#0a3d91]/50 hover:-translate-y-1.5 flex items-center justify-center group"
                   >
                     <Image
                       src={`/images/clients/${client.file}`}
                       alt={client.alt}
                       fill
-                      className="object-contain p-2"
+                      className="object-contain p-2.5 sm:p-3.5 transition-transform duration-[450ms] group-hover:scale-105"
                       loading="lazy"
                     />
                   </div>

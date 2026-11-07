@@ -3,44 +3,81 @@ import { ArrowRight } from "lucide-react";
 
 export default function CtaSection() {
   return (
-    <section className="relative w-full bg-white py-10 sm:py-14 lg:py-16">
-      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-12">
-        <div className="relative rounded-2xl border border-blue-950/40 bg-gradient-to-r from-[#050c1c] via-[#081329] to-[#0c1c3d] p-8 sm:p-10 lg:p-12 text-white shadow-2xl shadow-slate-900/10 overflow-hidden">
-          {/* Subtle Ambient Glow */}
-          <div
-            className="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-600/15 rounded-full blur-3xl pointer-events-none"
-            aria-hidden="true"
-          />
-          <div
-            className="absolute top-0 left-1/4 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"
-            aria-hidden="true"
-          />
+    <section
+      id="cta-section"
+      className="relative w-full overflow-hidden py-24 sm:py-28 lg:py-36 flex items-center"
+      style={{
+        clipPath: "inset(0)",
+        WebkitClipPath: "inset(0)"
+      }}
+    >
+      {/* ========================================================= */}
+      {/* 1. Fixed Background Video (Parallax Window)               */}
+      {/* ========================================================= */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        className="fixed inset-0 w-full h-full object-cover pointer-events-none -z-20"
+      >
+        <source src="/videos/CTA_BG.webm" type="video/webm" />
+      </video>
 
-          <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-12">
-            {/* Left Content */}
-            <div className="max-w-3xl">
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-blue-400">
-                END-TO-END CUSTOM SOLUTIONS
-              </span>
-              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-[32px] font-extrabold text-white tracking-tight leading-snug">
-                Looking for Custom SPM Development or Tube Mill Automation?
-              </h2>
-              <p className="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
-                Our engineering team works directly with plant heads and operations directors to design, integrate,
-                and validate specialized automation equipment and AI inspection systems.
-              </p>
-            </div>
+      {/* ========================================================= */}
+      {/* 2. Gradient Overlays for High Legibility & Contrast       */}
+      {/* ========================================================= */}
+      <div
+        className="absolute inset-0 pointer-events-none -z-10"
+        style={{
+          background:
+            "linear-gradient(to right, rgba(5, 12, 28, 0.90) 0%, rgba(7, 19, 41, 0.80) 50%, rgba(12, 28, 61, 0.72) 100%)"
+        }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-0 bg-black/30 pointer-events-none -z-10"
+        aria-hidden="true"
+      />
 
-            {/* Right Action Button */}
-            <div className="shrink-0">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 rounded-lg bg-white px-6 sm:px-7 py-3.5 sm:py-4 text-xs sm:text-sm font-extrabold uppercase tracking-wider text-slate-950 transition-all hover:bg-slate-100 hover:shadow-lg shadow-md group whitespace-nowrap"
-              >
-                <span>CONSULT OUR ENGINEERING TEAM</span>
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </div>
+      {/* Ambient Lighting Orbs */}
+      <div
+        className="absolute -right-20 -bottom-20 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl pointer-events-none -z-10"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute top-0 left-1/4 w-80 h-80 bg-blue-500/15 rounded-full blur-3xl pointer-events-none -z-10"
+        aria-hidden="true"
+      />
+
+      {/* ========================================================= */}
+      {/* 3. Full-Width Section Content                             */}
+      {/* ========================================================= */}
+      <div className="relative z-10 mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-12 w-full">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-14">
+          {/* Left Content */}
+          <div className="max-w-3xl">
+            <h3 className="font-mono text-xs sm:text-sm font-bold uppercase tracking-widest text-blue-400">
+              Global Corporate Council India
+            </h3>
+            <h2 className="mt-3 text-2xl sm:text-3xl lg:text-[34px] font-extrabold text-white tracking-tight leading-[1.25] drop-shadow-md">
+              &ldquo;Driven by Trust, Guided by Principle, Perfected with Meticulousness.&rdquo;
+            </h2>
+            <p className="mt-4 text-base sm:text-lg text-slate-200 leading-relaxed font-normal max-w-2xl drop-shadow-sm">
+              Have a question or project in mind? We&apos;d love to hear from you! Reach out to our team &mdash; we&apos;re here to turn your ideas into meaningful outcomes.
+            </p>
+          </div>
+
+          {/* Right Action Button */}
+          <div className="shrink-0">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-3 rounded-full bg-white px-8 sm:px-9 py-4 sm:py-5 text-xs sm:text-sm font-extrabold uppercase tracking-wider text-slate-950 transition-all duration-300 hover:bg-blue-50 hover:shadow-2xl hover:scale-105 shadow-xl group whitespace-nowrap"
+            >
+              <span>Get In Touch</span>
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
+            </Link>
           </div>
         </div>
       </div>
