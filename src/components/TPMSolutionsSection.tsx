@@ -71,7 +71,7 @@ export default function TPMSolutionsSection() {
   const [isInView, setIsInView] = useState<boolean>(false);
 
   const sectionRef = useRef<HTMLElement | null>(null);
-  const startTimeRef = useRef<number>(Date.now());
+  const startTimeRef = useRef<number>(0);
   const elapsedBeforePauseRef = useRef<number>(0);
   const animFrameRef = useRef<number | null>(null);
 

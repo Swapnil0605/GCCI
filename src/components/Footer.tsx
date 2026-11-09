@@ -168,7 +168,6 @@ export default function Footer() {
           </div>
           <div className="text-xs sm:text-[13px] text-slate-500 font-medium">
             Designed and Developed by{" "}
-            <span className="text-slate-800 font-semibold tracking-wide">
             <a
               href="https://qirotec.com/"
               target="_blank"
@@ -176,7 +175,6 @@ export default function Footer() {
               className="text-slate-800 font-semibold tracking-wide hover:text-blue-700 underline-offset-4 hover:underline transition-colors"
             >
               Qiro Tech Innovation Pvt Ltd
-            </span>
             </a>
           </div>
         </div>

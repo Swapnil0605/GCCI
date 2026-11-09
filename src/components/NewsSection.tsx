@@ -82,7 +82,6 @@ export default function NewsSection() {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-8 sm:pb-12 border-b border-slate-200">
           <div>
             <h2 className="text-[34px] sm:text-[40px] lg:text-[42px] font-semibold tracking-tight text-[#1f1d1d] leading-tight">
-              Latest News
               News
             </h2>
           </div>
@@ -97,7 +96,6 @@ export default function NewsSection() {
 
         {/* 2-Column News Layout Matching Second Image */}
         <div className="mt-10 sm:mt-12 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          {/* Left Column: Main News with Image (Matching First Image) */}
           {/* Left Column: Main News with Image */}
           <div
             onClick={() => setSelectedArticle(featuredNews)}
@@ -112,9 +110,6 @@ export default function NewsSection() {
                 priority
                 className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute top-4 right-4 z-10 btn-arrow btn-arrow-grey shadow-md">
-                <ArrowUpRight className="arrow-primary" />
-                <ArrowUpRight className="arrow-secondary" />
               <div className="absolute top-4 right-4 z-10 pointer-events-none">
                 <div className="btn-arrow btn-arrow-grey shadow-md rounded-xl">
                   <ArrowUpRight className="arrow-primary" />

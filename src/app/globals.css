@@ -130,3 +130,12 @@ body {
   color: #0a3d91;
 }
 
+/* Hide Next.js Development Indicator Badge */
+nextjs-portal,
+[data-nextjs-toast],
+[data-nextjs-dev-tools-button],
+#__next-build-watcher {
+  display: none !important;
+}
+
+
