@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
+import CtaSection from "@/components/CtaSection";
 import Image from "next/image";
 
 export const metadata = {
@@ -90,6 +91,8 @@ export default function GalleryPage() {
           </div>
         </div>
       </section>
+
+      <CtaSection />
 
       <Footer />
     </main>

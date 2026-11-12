@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CtaSection from "@/components/CtaSection";
 import { ArrowRight, ArrowRightCircle } from "lucide-react";
 
 export const metadata = {
@@ -400,6 +401,8 @@ export default function JapaneseTrainingPage() {
           </div>
         </div>
       </section>
+
+      <CtaSection />
 
       {/* 6. Footer */}
       <Footer />

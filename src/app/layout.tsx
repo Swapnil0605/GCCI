@@ -1,13 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  weight: ["300", "400", "500", "600", "700", "800"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "GCCI International LLP | Global Corporate Council India – Inspiring Global Excellence",
@@ -46,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${plusJakarta.variable} font-sans`}>
+    <html lang="en" className="font-sans">
       <body className="min-h-screen bg-white text-slate-900 antialiased selection:bg-brand-500 selection:text-white">
         {children}
       </body>

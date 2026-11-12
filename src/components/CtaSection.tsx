@@ -1,7 +1,31 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 
-export default function CtaSection() {
+interface CtaSectionProps {
+  badge?: string;
+  title?: string;
+  description?: string;
+  primaryBtnText?: string;
+  primaryBtnHref?: string;
+  primaryBtnTarget?: string;
+  secondaryBtnText?: string;
+  secondaryBtnHref?: string;
+  secondaryBtnOnClick?: () => void;
+}
+
+export default function CtaSection({
+  badge = "Global Corporate Council India",
+  title = "“Driven by Trust, Guided by Principle, Perfected with Meticulousness.”",
+  description = "Have a question or project in mind? We'd love to hear from you! Reach out to our team — we're here to turn your ideas into meaningful outcomes.",
+  primaryBtnText = "Get In Touch",
+  primaryBtnHref = "/contact",
+  primaryBtnTarget,
+  secondaryBtnText,
+  secondaryBtnHref,
+  secondaryBtnOnClick
+}: CtaSectionProps = {}) {
+  const isPrimaryExternal = primaryBtnTarget === "_blank" || primaryBtnHref.startsWith("http");
+
   return (
     <section
       id="cta-section"
@@ -59,29 +83,73 @@ export default function CtaSection() {
           {/* Left Content */}
           <div className="max-w-3xl">
             <h3 className="font-mono text-xs sm:text-sm font-bold uppercase tracking-widest text-blue-400">
-              Global Corporate Council India
+              {badge}
             </h3>
             <h2 className="mt-3 text-2xl sm:text-3xl lg:text-[34px] font-extrabold text-white tracking-tight leading-[1.25] drop-shadow-md">
-              &ldquo;Driven by Trust, Guided by Principle, Perfected with Meticulousness.&rdquo;
+              {title}
             </h2>
-            <p className="mt-4 text-base sm:text-lg text-slate-200 leading-relaxed font-normal max-w-2xl drop-shadow-sm">
-              Have a question or project in mind? We&apos;d love to hear from you! Reach out to our team &mdash; we&apos;re here to turn your ideas into meaningful outcomes.
-            </p>
+            {description && (
+              <p className="mt-4 text-base sm:text-lg text-slate-200 leading-relaxed font-normal max-w-2xl drop-shadow-sm">
+                {description}
+              </p>
+            )}
           </div>
 
-          {/* Right Action Button */}
-          <div className="shrink-0">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-3 rounded-full bg-white px-8 sm:px-9 py-4 sm:py-5 text-xs sm:text-sm font-extrabold uppercase tracking-wider text-slate-950 transition-all duration-300 hover:bg-blue-50 hover:shadow-2xl hover:scale-105 shadow-xl group whitespace-nowrap"
-            >
-              <span>Get In Touch</span>
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
-            </Link>
+          {/* Right Action Buttons */}
+          <div className="flex flex-wrap items-center gap-4 shrink-0">
+            {isPrimaryExternal ? (
+              <a
+                href={primaryBtnHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 rounded-full bg-white px-8 sm:px-9 py-4 sm:py-5 text-xs sm:text-sm font-extrabold uppercase tracking-wider text-slate-950 transition-all duration-300 hover:bg-blue-50 hover:shadow-2xl hover:scale-105 shadow-xl group whitespace-nowrap"
+              >
+                <span>{primaryBtnText}</span>
+                <ExternalLink className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </a>
+            ) : (
+              <Link
+                href={primaryBtnHref}
+                className="inline-flex items-center gap-3 rounded-full bg-white px-8 sm:px-9 py-4 sm:py-5 text-xs sm:text-sm font-extrabold uppercase tracking-wider text-slate-950 transition-all duration-300 hover:bg-blue-50 hover:shadow-2xl hover:scale-105 shadow-xl group whitespace-nowrap"
+              >
+                <span>{primaryBtnText}</span>
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
+              </Link>
+            )}
+
+            {secondaryBtnText && secondaryBtnHref && (
+              secondaryBtnHref.endsWith(".pdf") || secondaryBtnHref.startsWith("http") ? (
+                <a
+                  href={secondaryBtnHref}
+                  download={secondaryBtnHref.endsWith(".pdf") ? "GCCI_TPM_BTLC_Brochure.pdf" : undefined}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/30 px-7 sm:px-8 py-4 sm:py-5 text-xs sm:text-sm font-extrabold uppercase tracking-wider text-white hover:bg-white/20 transition-all duration-300 whitespace-nowrap"
+                >
+                  <span>{secondaryBtnText}</span>
+                </a>
+              ) : (
+                <Link
+                  href={secondaryBtnHref}
+                  className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/30 px-7 sm:px-8 py-4 sm:py-5 text-xs sm:text-sm font-extrabold uppercase tracking-wider text-white hover:bg-white/20 transition-all duration-300 whitespace-nowrap"
+                >
+                  <span>{secondaryBtnText}</span>
+                </Link>
+              )
+            )}
+
+            {secondaryBtnText && secondaryBtnOnClick && !secondaryBtnHref && (
+              <button
+                type="button"
+                onClick={secondaryBtnOnClick}
+                className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/30 px-7 sm:px-8 py-4 sm:py-5 text-xs sm:text-sm font-extrabold uppercase tracking-wider text-white hover:bg-white/20 transition-all duration-300 cursor-pointer whitespace-nowrap"
+              >
+                <span>{secondaryBtnText}</span>
+              </button>
+            )}
           </div>
         </div>
       </div>
     </section>
   );
 }
-

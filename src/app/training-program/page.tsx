@@ -1,1 +1,1 @@
-export { default, metadata } from "@/components/JapaneseTrainingPage";
+export { default, metadata } from "../training_program/page";

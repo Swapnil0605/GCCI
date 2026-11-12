@@ -4,6 +4,7 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
+import CtaSection from "@/components/CtaSection";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 
@@ -180,6 +181,8 @@ export default function Service2Page() {
           </div>
         </div>
       </section>
+
+      <CtaSection />
 
       <Footer />
     </main>
