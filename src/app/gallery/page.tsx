@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import CtaSection from "@/components/CtaSection";
-import Image from "next/image";
+import GalleryGrid from "@/components/GalleryGrid";
 
 export const metadata = {
   title: "Our Gallery | GCCI International LLP",
@@ -57,38 +57,7 @@ export default function GalleryPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {galleryItems.map((item, idx) => (
-              <div
-                key={idx}
-                className="group relative overflow-hidden rounded-xl border border-slate-200 bg-white shadow-2xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-              >
-                <div className="relative h-64 w-full overflow-hidden bg-slate-100">
-                  <Image
-                    src={item.src}
-                    alt={item.title}
-                    fill
-                    className="object-cover group-hover:scale-108 transition-transform duration-500"
-                  />
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-[#0a3d91]/85 p-5 text-white flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span className="text-[11px] font-mono text-blue-200 uppercase tracking-widest mb-1">
-                      GCCI Activity
-                    </span>
-                    <h3 className="text-sm font-bold leading-snug">
-                      {item.title}
-                    </h3>
-                  </div>
-                </div>
-
-                <div className="p-4 border-t border-slate-100">
-                  <h3 className="text-xs font-semibold text-slate-800 line-clamp-2">
-                    {item.title}
-                  </h3>
-                </div>
-              </div>
-            ))}
-          </div>
+          <GalleryGrid items={galleryItems} />
         </div>
       </section>
 

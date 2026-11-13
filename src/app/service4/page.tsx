@@ -28,7 +28,7 @@ export default function Service4Page() {
       <PageHero
         title="Services"
         subtitle="TPM Software – Subscription Based"
-        bgImage="/public/service_hero_2.jpg"
+        bgImage="/images/heroes/service_hero_2.jpg"
       />
 
       <section className="py-20 bg-slate-50">

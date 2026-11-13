@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -18,6 +18,29 @@ export default function Header() {
     setServicesDropdownOpen(false);
   };
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
+  // Close on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        closeMenu();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   const isActive = (path: string) => {
     if (path === "/" && pathname === "/") return true;
     if (path !== "/" && pathname?.startsWith(path)) return true;
@@ -25,11 +48,11 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-100 bg-white shadow-xs">
-      <div className="mx-auto flex max-w-[1440px] items-center justify-between px-4 sm:px-8 py-3.5">
+    <header className="sticky top-0 z-50 w-full border-b border-slate-100 bg-white/98 backdrop-blur-md shadow-xs">
+      <div className="mx-auto flex max-w-[1440px] items-center justify-between px-3 sm:px-6 lg:px-8 py-2.5 sm:py-3.5">
         {/* Brand Logo & Name */}
-        <Link href="/" className="flex items-center gap-3 shrink-0" onClick={closeMenu}>
-          <div className="relative h-12 w-44 sm:h-14 sm:w-64">
+        <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink-0" onClick={closeMenu}>
+          <div className="relative h-10 w-36 xs:h-11 xs:w-44 sm:h-14 sm:w-64 transition-transform duration-200 hover:scale-[1.01]">
             <Image
               src="/images/new_logo_gcci.png"
               alt="Global Corporate Council India - GCCI / GCCI International LLP"
@@ -59,7 +82,7 @@ export default function Header() {
           >
             <button
               type="button"
-              className={`flex items-center gap-1 transition-colors hover:text-[#0a3d91] py-2 ${
+              className={`flex items-center gap-1 transition-colors hover:text-[#0a3d91] py-2 cursor-pointer ${
                 pathname?.includes("/about") ||
                 pathname?.includes("/directors") ||
                 pathname?.includes("/journey") ||
@@ -121,7 +144,7 @@ export default function Header() {
           >
             <button
               type="button"
-              className={`flex items-center gap-1 transition-colors hover:text-[#0a3d91] py-2 ${
+              className={`flex items-center gap-1 transition-colors hover:text-[#0a3d91] py-2 cursor-pointer ${
                 pathname?.includes("/service") ? "font-bold text-[#0a3d91]" : ""
               }`}
               aria-expanded={servicesDropdownOpen}
@@ -200,14 +223,14 @@ export default function Header() {
           <Link
             href="/training_program"
             className={`transition-colors hover:text-[#0a3d91] ${
-              isActive("/training_program") ? "font-bold text-[#0a3d91]" : ""
+              isActive("/training_program") || isActive("/training-program") ? "font-bold text-[#0a3d91]" : ""
             }`}
           >
             Training Program
           </Link>
         </nav>
 
-        {/* Contact Us Button */}
+        {/* Desktop Contact Us Button */}
         <div className="hidden xl:flex items-center">
           <Link
             href="/contact"
@@ -217,136 +240,161 @@ export default function Header() {
           </Link>
         </div>
 
-        {/* Mobile Hamburger Button */}
-        <div className="flex xl:hidden items-center gap-3">
+        {/* Mobile Hamburger & Quick Contact Button */}
+        <div className="flex xl:hidden items-center gap-1.5 sm:gap-2.5 shrink-0">
           <Link
             href="/contact"
-            className="rounded-full bg-[#0a3d91] px-4 py-1.5 text-xs font-semibold text-white"
+            onClick={closeMenu}
+            className="rounded-full bg-[#0a3d91] px-3 sm:px-4 py-1.5 text-[11px] sm:text-xs font-semibold text-white transition-colors hover:bg-[#082d64]"
           >
             Contact
           </Link>
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="rounded-md p-2 text-slate-700 hover:bg-slate-100"
-            aria-label="Toggle menu"
+            className="rounded-lg p-1.5 sm:p-2 text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
           >
-            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {mobileMenuOpen ? <X className="h-5 w-5 sm:h-6 sm:w-6" /> : <Menu className="h-5 w-5 sm:h-6 sm:w-6" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer Backdrop & Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 top-[65px] z-50 flex flex-col bg-white border-t border-slate-200 overflow-y-auto p-5 space-y-4 xl:hidden">
-          <Link
-            href="/"
-            onClick={closeMenu}
-            className="border-b border-slate-100 pb-2.5 text-base font-semibold text-slate-900"
+        <div
+          className="fixed inset-x-0 top-full h-[calc(100dvh-100%)] z-50 bg-black/40 backdrop-blur-xs xl:hidden animate-in fade-in duration-200"
+          onClick={closeMenu}
+        >
+          <div
+            className="w-full max-h-full overflow-y-auto bg-white border-t border-slate-200 px-5 py-6 space-y-4 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
           >
-            Home
-          </Link>
-
-          {/* About Us Mobile Accordion */}
-          <div className="border-b border-slate-100 pb-2.5">
-            <button
-              type="button"
-              onClick={() => setAboutDropdownOpen(!aboutDropdownOpen)}
-              className="flex w-full items-center justify-between text-base font-semibold text-slate-900"
-            >
-              <span>About Us</span>
-              <ChevronDown
-                className={`h-4 w-4 transition-transform ${aboutDropdownOpen ? "rotate-180" : ""}`}
-              />
-            </button>
-            {aboutDropdownOpen && (
-              <div className="mt-2 space-y-2 pl-4 text-sm text-slate-600">
-                <Link href="/about" onClick={closeMenu} className="block py-1 hover:text-[#0a3d91]">
-                  • Company History
-                </Link>
-                <Link href="/directors" onClick={closeMenu} className="block py-1 hover:text-[#0a3d91]">
-                  • Our Director
-                </Link>
-                <Link href="/journey" onClick={closeMenu} className="block py-1 hover:text-[#0a3d91]">
-                  • Our Journey
-                </Link>
-                <Link href="/awards" onClick={closeMenu} className="block py-1 hover:text-[#0a3d91]">
-                  • Awards And Certifications
-                </Link>
-              </div>
-            )}
-          </div>
-
-          {/* Services Mobile Accordion */}
-          <div className="border-b border-slate-100 pb-2.5">
-            <button
-              type="button"
-              onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
-              className="flex w-full items-center justify-between text-base font-semibold text-slate-900"
-            >
-              <span>Services</span>
-              <ChevronDown
-                className={`h-4 w-4 transition-transform ${servicesDropdownOpen ? "rotate-180" : ""}`}
-              />
-            </button>
-            {servicesDropdownOpen && (
-              <div className="mt-2 space-y-2 pl-4 text-xs text-slate-600">
-                <Link href="/service1" onClick={closeMenu} className="block py-1.5 hover:text-[#0a3d91]">
-                  • Advocacy / Assessment / Capability Development / Recognition of Competitiveness
-                </Link>
-                <Link href="/service2" onClick={closeMenu} className="block py-1.5 hover:text-[#0a3d91]">
-                  • Liaison Global Expertise Technology Support / Industry Automation
-                </Link>
-                <Link href="/service3" onClick={closeMenu} className="block py-1.5 hover:text-[#0a3d91]">
-                  • Maintenance Software / Support IT / IoT / AI
-                </Link>
-                <Link href="/service4" onClick={closeMenu} className="block py-1.5 hover:text-[#0a3d91]">
-                  • TPM Software (Subscription Model)
-                </Link>
-              </div>
-            )}
-          </div>
-
-          <Link
-            href="/activity"
-            onClick={closeMenu}
-            className="border-b border-slate-100 pb-2.5 text-base font-semibold text-slate-900"
-          >
-            Activity
-          </Link>
-
-          <Link
-            href="/news"
-            onClick={closeMenu}
-            className="border-b border-slate-100 pb-2.5 text-base font-semibold text-slate-900"
-          >
-            News
-          </Link>
-
-          <Link
-            href="/gallery"
-            onClick={closeMenu}
-            className="border-b border-slate-100 pb-2.5 text-base font-semibold text-slate-900"
-          >
-            Gallery
-          </Link>
-
-          <Link
-            href="/training_program"
-            onClick={closeMenu}
-            className="border-b border-slate-100 pb-2.5 text-base font-semibold text-slate-900"
-          >
-            Training Program
-          </Link>
-
-          <div className="pt-3">
             <Link
-              href="/contact"
+              href="/"
               onClick={closeMenu}
-              className="flex w-full items-center justify-center rounded-full bg-[#0a3d91] py-3 text-sm font-semibold text-white shadow"
+              className={`block border-b border-slate-100 pb-2.5 text-base font-semibold transition-colors ${
+                isActive("/") ? "text-[#0a3d91]" : "text-slate-900"
+              }`}
             >
-              Contact us
+              Home
             </Link>
+
+            {/* About Us Mobile Accordion */}
+            <div className="border-b border-slate-100 pb-2.5">
+              <button
+                type="button"
+                onClick={() => setAboutDropdownOpen(!aboutDropdownOpen)}
+                className="flex w-full items-center justify-between text-base font-semibold text-slate-900 cursor-pointer"
+              >
+                <span>About Us</span>
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform duration-200 ${
+                    aboutDropdownOpen ? "rotate-180 text-[#0a3d91]" : "text-slate-400"
+                  }`}
+                />
+              </button>
+              {aboutDropdownOpen && (
+                <div className="mt-2.5 space-y-2 pl-3 text-sm text-slate-600 border-l-2 border-[#0a3d91]/30 animate-in slide-in-from-top-1">
+                  <Link href="/about" onClick={closeMenu} className="block py-1 hover:text-[#0a3d91]">
+                    • Company History
+                  </Link>
+                  <Link href="/directors" onClick={closeMenu} className="block py-1 hover:text-[#0a3d91]">
+                    • Our Director
+                  </Link>
+                  <Link href="/journey" onClick={closeMenu} className="block py-1 hover:text-[#0a3d91]">
+                    • Our Journey
+                  </Link>
+                  <Link href="/awards" onClick={closeMenu} className="block py-1 hover:text-[#0a3d91]">
+                    • Awards And Certifications
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* Services Mobile Accordion */}
+            <div className="border-b border-slate-100 pb-2.5">
+              <button
+                type="button"
+                onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
+                className="flex w-full items-center justify-between text-base font-semibold text-slate-900 cursor-pointer"
+              >
+                <span>Services</span>
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform duration-200 ${
+                    servicesDropdownOpen ? "rotate-180 text-[#0a3d91]" : "text-slate-400"
+                  }`}
+                />
+              </button>
+              {servicesDropdownOpen && (
+                <div className="mt-2.5 space-y-2.5 pl-3 text-xs text-slate-600 border-l-2 border-[#0a3d91]/30 animate-in slide-in-from-top-1">
+                  <Link href="/service1" onClick={closeMenu} className="block py-1 leading-snug hover:text-[#0a3d91]">
+                    • Advocacy / Assessment / Capability Development / Recognition of Competitiveness
+                  </Link>
+                  <Link href="/service2" onClick={closeMenu} className="block py-1 leading-snug hover:text-[#0a3d91]">
+                    • Liaison Global Expertise Technology Support / Industry Automation
+                  </Link>
+                  <Link href="/service3" onClick={closeMenu} className="block py-1 leading-snug hover:text-[#0a3d91]">
+                    • Maintenance Software / Support IT / IoT / AI
+                  </Link>
+                  <Link href="/service4" onClick={closeMenu} className="block py-1 leading-snug hover:text-[#0a3d91]">
+                    • TPM Software (Subscription Model)
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            <Link
+              href="/activity"
+              onClick={closeMenu}
+              className={`block border-b border-slate-100 pb-2.5 text-base font-semibold transition-colors ${
+                isActive("/activity") ? "text-[#0a3d91]" : "text-slate-900"
+              }`}
+            >
+              Activity
+            </Link>
+
+            <Link
+              href="/news"
+              onClick={closeMenu}
+              className={`block border-b border-slate-100 pb-2.5 text-base font-semibold transition-colors ${
+                isActive("/news") ? "text-[#0a3d91]" : "text-slate-900"
+              }`}
+            >
+              News
+            </Link>
+
+            <Link
+              href="/gallery"
+              onClick={closeMenu}
+              className={`block border-b border-slate-100 pb-2.5 text-base font-semibold transition-colors ${
+                isActive("/gallery") ? "text-[#0a3d91]" : "text-slate-900"
+              }`}
+            >
+              Gallery
+            </Link>
+
+            <Link
+              href="/training_program"
+              onClick={closeMenu}
+              className={`block border-b border-slate-100 pb-2.5 text-base font-semibold transition-colors ${
+                isActive("/training_program") || isActive("/training-program") ? "text-[#0a3d91]" : "text-slate-900"
+              }`}
+            >
+              Training Program
+            </Link>
+
+            <div className="pt-3 pb-6">
+              <Link
+                href="/contact"
+                onClick={closeMenu}
+                className="flex w-full items-center justify-center gap-2 rounded-full bg-[#0a3d91] py-3 text-sm font-semibold text-white shadow-md hover:bg-[#082d64] transition-colors"
+              >
+                <span>Contact us</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
         </div>
       )}

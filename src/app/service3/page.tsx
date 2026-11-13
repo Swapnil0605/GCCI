@@ -96,7 +96,7 @@ export default function Service3Page() {
       <PageHero
         title="Services"
         subtitle="Maintenance Software / IT Support / IoT / AI"
-        bgImage="/public/service3.jpg"
+        bgImage="/images/heroes/service3.jpg"
       />
 
       <section className="py-20 bg-slate-50">

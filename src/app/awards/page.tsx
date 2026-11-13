@@ -296,38 +296,44 @@ export default function AwardsPage() {
                 {/* ---------------------------------------------------- */}
                 {/* Visual / Certificate Preview Column                   */}
                 {/* ---------------------------------------------------- */}
-                <div className="lg:col-span-5 bg-slate-50 border-b lg:border-b-0 lg:border-r border-slate-200 p-6 sm:p-8 flex flex-col justify-between relative group">
-                  <div className="relative aspect-[4/3] sm:aspect-[16/11] w-full rounded-xl overflow-hidden bg-white border border-slate-200 shadow-2xs">
+                <div className="lg:col-span-5 bg-slate-50 border-b lg:border-b-0 lg:border-r border-slate-200 p-5 sm:p-8 flex flex-col justify-between relative group">
+                  <div
+                    onClick={() => setModalImage({ src: cred.image, title: cred.title })}
+                    className="relative aspect-[4/3] sm:aspect-[16/11] w-full rounded-xl overflow-hidden bg-white border border-slate-200 shadow-2xs cursor-pointer"
+                  >
                     <Image
                       src={cred.image}
                       alt={cred.title}
                       fill
+                      sizes="(max-width: 1024px) 100vw, 450px"
                       className="object-contain p-2 transition-transform duration-500 group-hover:scale-105"
                       loading="lazy"
                     />
 
-                    {/* Magnify hover pill */}
-                    <button
-                      type="button"
-                      onClick={() => setModalImage({ src: cred.image, title: cred.title })}
-                      className="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-bold uppercase tracking-wider cursor-pointer"
-                    >
+                    {/* Desktop Hover pill */}
+                    <div className="hidden sm:flex absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 transition-opacity items-center justify-center gap-2 text-white text-xs font-bold uppercase tracking-wider pointer-events-none">
                       <span className="bg-[#0a387c] px-4 py-2 rounded-full flex items-center gap-2 shadow-lg">
                         <ZoomIn className="h-4 w-4" />
                         Inspect Document
                       </span>
-                    </button>
+                    </div>
+
+                    {/* Mobile Tap Pill */}
+                    <div className="sm:hidden absolute bottom-2 right-2 bg-[#0a387c]/90 text-white px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider flex items-center gap-1 shadow-md">
+                      <ZoomIn className="h-3 w-3" />
+                      <span>Tap to zoom</span>
+                    </div>
                   </div>
 
                   {/* Verification Seal Footer */}
-                  <div className="mt-5 flex items-center justify-between text-xs">
-                    <span className="font-mono text-slate-500 font-semibold truncate max-w-[240px]">
+                  <div className="mt-4 sm:mt-5 flex items-center justify-between text-xs gap-2">
+                    <span className="font-mono text-slate-500 font-semibold truncate max-w-[200px] sm:max-w-[240px]">
                       {cred.verifiedNumber}
                     </span>
                     <button
                       type="button"
                       onClick={() => setModalImage({ src: cred.image, title: cred.title })}
-                      className="text-[#0a387c] hover:underline font-bold inline-flex items-center gap-1 cursor-pointer"
+                      className="text-[#0a387c] hover:underline font-bold inline-flex items-center gap-1 cursor-pointer shrink-0"
                     >
                       <span>Full View</span>
                       <ExternalLink className="h-3 w-3" />

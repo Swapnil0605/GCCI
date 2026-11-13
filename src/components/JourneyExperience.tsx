@@ -302,7 +302,7 @@ export default function JourneyExperience() {
   const scrollToTarget = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
-      const yOffset = -100;
+      const yOffset = -120;
       const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: "smooth" });
     }
@@ -470,10 +470,10 @@ export default function JourneyExperience() {
           </div>
         </div>
 
-        {/* Mobile/Tablet Quick Jump Bar (Sticks only inside the timeline) */}
+        {/* Mobile/Tablet Quick Jump Bar (Sticks beneath main header) */}
         <nav
           aria-label="Timeline Era Quick Navigation"
-          className="sticky top-0 z-30 w-full bg-white/95 backdrop-blur-md border-b border-slate-200 py-3 px-4 flex lg:hidden items-center gap-2 overflow-x-auto no-scrollbar shadow-xs"
+          className="sticky top-[56px] sm:top-[70px] z-30 w-full bg-white/95 backdrop-blur-md border-b border-slate-200 py-2.5 px-3 sm:px-4 flex lg:hidden items-center gap-2 overflow-x-auto touch-pan-x scroll-smooth no-scrollbar shadow-xs"
         >
           <span className="text-xs font-bold uppercase tracking-wider text-slate-400 shrink-0 mr-1">
             Jump to:
@@ -512,14 +512,14 @@ export default function JourneyExperience() {
             <section
               key={band.id}
               id={band.id}
-              className={`w-full ${bgClass} py-20 sm:py-28 lg:py-36 transition-colors duration-300 relative`}
+              className={`w-full ${bgClass} py-14 sm:py-24 lg:py-36 transition-colors duration-300 relative`}
             >
               <div className="mx-auto max-w-[1280px] px-4 sm:px-8 lg:pl-64 xl:pl-72 lg:pr-12">
                 {/* Huge Era Header (e.g. Early Years, 2019, 2021, 2023, 2025) */}
                 {band.eraHeader && (
-                  <div className="mb-14 sm:mb-20">
+                  <div className="mb-10 sm:mb-20">
                     <h2
-                      className={`text-6xl sm:text-7xl md:text-8xl lg:text-[100px] font-light tracking-tight leading-none ${
+                      className={`text-4xl xs:text-5xl sm:text-7xl md:text-8xl lg:text-[100px] font-light tracking-tight leading-none break-words ${
                         isDark ? "text-white" : "text-slate-900"
                       }`}
                     >

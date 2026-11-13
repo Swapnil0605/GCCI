@@ -81,19 +81,19 @@ function CounterItem({ item, isVisible }: { item: KpiItem; isVisible: boolean })
   }, [isVisible, item.target]);
 
   return (
-    <div className="flex items-start gap-4 border-l-2 border-[#1d64d8] pl-4 sm:pl-5 py-1">
-      <div className="text-blue-400 mt-1 shrink-0 p-2 rounded-lg bg-blue-950/60 border border-blue-800/40">
+    <div className="flex items-start gap-3 sm:gap-4 border-l-2 border-[#1d64d8] pl-3.5 sm:pl-5 py-1">
+      <div className="text-blue-400 mt-1 shrink-0 p-1.5 sm:p-2 rounded-lg bg-blue-950/60 border border-blue-800/40">
         <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
       </div>
       <div>
-        <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight flex items-baseline">
+        <div className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight flex items-baseline">
           <span>{count}</span>
           <span className="text-blue-400 font-bold ml-0.5">{item.suffix}</span>
         </div>
         <div className="mt-1 text-xs sm:text-sm font-semibold text-slate-200 leading-tight">
           {item.label}
         </div>
-        <div className="text-xs text-slate-400 leading-snug">
+        <div className="text-[11px] sm:text-xs text-slate-400 leading-snug">
           {item.description}
         </div>
       </div>
@@ -129,10 +129,10 @@ export default function KpiSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full bg-slate-950 border-y border-slate-800/90 py-10 sm:py-14 text-white shadow-inner"
+      className="relative w-full bg-slate-950 border-y border-slate-800/90 py-8 sm:py-12 lg:py-14 text-white shadow-inner"
     >
-      <div className="mx-auto max-w-[1440px] px-4 sm:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10">
           {kpis.map((kpi) => (
             <CounterItem key={kpi.id} item={kpi} isVisible={isVisible} />
           ))}

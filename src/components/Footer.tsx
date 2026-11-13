@@ -162,11 +162,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom Sub-footer */}
-        <div className="mt-12 pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <div className="mt-12 pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4 text-center sm:text-left">
           <div>
             © 2026 GCCI International LLP. All Rights Reserved. Formerly Global Corporate Council India.
           </div>
-          <div className="text-xs sm:text-[13px] text-slate-500 font-medium">
+          <div className="text-xs sm:text-[13px] text-slate-500 font-medium text-center sm:text-right">
             Designed and Developed by{" "}
             <a
               href="https://qirotec.com/"

@@ -235,10 +235,7 @@ export default function JapaneseTrainingPage() {
           >
             {/* Left Image with Modern Slanted Diagonal Cut */}
             <div
-              className="lg:col-span-5 relative w-full h-64 sm:h-80 lg:h-[360px] overflow-hidden"
-              style={{
-                clipPath: "polygon(0 0, 100% 0, 88% 100%, 0 100%)"
-              }}
+              className="lg:col-span-5 relative w-full h-64 sm:h-80 lg:h-[360px] overflow-hidden lg:[clip-path:polygon(0_0,100%_0,88%_100%,0_100%)]"
             >
               <Image
                 src="/images/training/tpm.jpg"
@@ -250,10 +247,10 @@ export default function JapaneseTrainingPage() {
             </div>
 
             {/* Right Text Content with Stylized Watermark */}
-            <div className="lg:col-span-7 p-8 sm:p-10 lg:p-14 relative flex flex-col justify-center">
+            <div className="lg:col-span-7 p-6 sm:p-10 lg:p-14 relative flex flex-col justify-center">
               {/* Background Number Watermark 01 */}
               <div
-                className="absolute right-6 sm:right-10 top-1/2 -translate-y-1/2 font-mono text-[120px] sm:text-[160px] font-black select-none pointer-events-none leading-none tracking-tighter"
+                className="absolute right-4 sm:right-10 top-1/2 -translate-y-1/2 font-mono text-[90px] xs:text-[120px] sm:text-[160px] font-black select-none pointer-events-none leading-none tracking-tighter"
                 style={{ color: "rgba(10, 61, 145, 0.08)" }}
                 aria-hidden="true"
               >
@@ -293,10 +290,10 @@ export default function JapaneseTrainingPage() {
             style={{ backgroundColor: "#EEF3F8" }}
           >
             {/* Left Text Content with Stylized Watermark */}
-            <div className="lg:col-span-7 order-2 lg:order-1 p-8 sm:p-10 lg:p-14 relative flex flex-col justify-center">
+            <div className="lg:col-span-7 order-2 lg:order-1 p-6 sm:p-10 lg:p-14 relative flex flex-col justify-center">
               {/* Background Number Watermark 02 */}
               <div
-                className="absolute right-6 sm:right-10 top-1/2 -translate-y-1/2 font-mono text-[120px] sm:text-[160px] font-black select-none pointer-events-none leading-none tracking-tighter"
+                className="absolute right-4 sm:right-10 top-1/2 -translate-y-1/2 font-mono text-[90px] xs:text-[120px] sm:text-[160px] font-black select-none pointer-events-none leading-none tracking-tighter"
                 style={{ color: "rgba(10, 61, 145, 0.08)" }}
                 aria-hidden="true"
               >
@@ -331,10 +328,7 @@ export default function JapaneseTrainingPage() {
 
             {/* Right Image with Modern Slanted Diagonal Cut */}
             <div
-              className="lg:col-span-5 order-1 lg:order-2 relative w-full h-64 sm:h-80 lg:h-[360px] overflow-hidden"
-              style={{
-                clipPath: "polygon(12% 0, 100% 0, 100% 100%, 0 100%)"
-              }}
+              className="lg:col-span-5 order-1 lg:order-2 relative w-full h-64 sm:h-80 lg:h-[360px] overflow-hidden lg:[clip-path:polygon(12%_0,100%_0,100%_100%,0_100%)]"
             >
               <Image
                 src="/images/training/tps_kaizen.jpg"

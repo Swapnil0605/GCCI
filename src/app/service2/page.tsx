@@ -113,7 +113,7 @@ export default function Service2Page() {
       <PageHero
         title="Services"
         subtitle="Liaison Global Expertise / Technology Support / Industry Automation"
-        bgImage="/public/service2.jpg"
+        bgImage="/images/heroes/service2.jpg"
       />
 
       <section className="py-20 bg-slate-50">

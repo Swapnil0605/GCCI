@@ -29,7 +29,7 @@ export default function CtaSection({
   return (
     <section
       id="cta-section"
-      className="relative w-full overflow-hidden py-24 sm:py-28 lg:py-36 flex items-center"
+      className="relative w-full overflow-hidden py-16 sm:py-24 lg:py-32 flex items-center"
       style={{
         clipPath: "inset(0)",
         WebkitClipPath: "inset(0)"
@@ -96,7 +96,7 @@ export default function CtaSection({
           </div>
 
           {/* Right Action Buttons */}
-          <div className="flex flex-wrap items-center gap-4 shrink-0">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 shrink-0 w-full sm:w-auto">
             {isPrimaryExternal ? (
               <a
                 href={primaryBtnHref}

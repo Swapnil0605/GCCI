@@ -28,7 +28,12 @@ export const metadata: Metadata = {
     type: "website",
   },
   icons: {
-    icon: "/images/new_logo_gcci.png",
+    icon: [
+      { url: "/icon.png?v=3", type: "image/png" },
+      { url: "/favicon.ico?v=3", type: "image/x-icon" },
+    ],
+    shortcut: "/favicon.ico?v=3",
+    apple: "/icon.png?v=3",
   },
 };
 

@@ -75,7 +75,7 @@ export default function Service1Page() {
       <PageHero
         title="Services"
         subtitle="Advocacy / Assessment / Capability Development / Recognition of Competitiveness"
-        bgImage="/public/service_hero.jpg"
+        bgImage="/images/heroes/service_hero.jpg"
       />
 
       <section className="py-20 bg-slate-50">
@@ -87,7 +87,7 @@ export default function Service1Page() {
                 key={idx}
                 type="button"
                 onClick={() => setActiveIdx(idx)}
-                className={`p-6 rounded-xl border text-left transition-all font-bold text-sm sm:text-base cursor-pointer ${
+                className={`p-3.5 sm:p-5 rounded-xl border text-left transition-all font-bold text-xs sm:text-sm cursor-pointer ${
                   activeIdx === idx
                     ? "bg-[#0a3d91] text-white border-[#0a3d91] shadow-md scale-102"
                     : "bg-white text-slate-800 border-slate-200 hover:border-blue-400 hover:bg-slate-50"

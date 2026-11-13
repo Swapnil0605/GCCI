@@ -11,7 +11,7 @@ interface PageHeroProps {
 export default function PageHero({
   title,
   subtitle,
-  bgImage = "/public/service_hero.jpg"
+  bgImage = "/images/heroes/service_hero.jpg"
 }: PageHeroProps) {
   return (
     <section className="relative w-full h-[320px] sm:h-[380px] lg:h-[420px] bg-slate-900 overflow-hidden flex items-center">

@@ -44,7 +44,7 @@ export default function ContactPage() {
       <PageHero
         title="Contact Us"
         subtitle="Get in Touch with the GCCI Team for Expert Guidance and Support"
-        bgImage="/public/contact_hero.webp"
+        bgImage="/images/heroes/contact_hero.webp"
       />
 
       <section className="py-20 bg-slate-50">

@@ -188,7 +188,7 @@ export default function NewsPage() {
             {stackedNewsArticles.map((article, idx) => (
               <div
                 key={article.id}
-                className={`sticky top-24 sm:top-28 lg:top-32 rounded-[28px] sm:rounded-[36px] p-6 sm:p-10 lg:p-12 mb-16 sm:mb-24 lg:mb-32 min-h-[480px] lg:min-h-[520px] shadow-[0_20px_50px_rgba(0,0,0,0.3)] border ${article.theme.cardBg} ${article.theme.textColor} ${article.theme.borderColor} transition-all duration-300 group flex flex-col justify-between`}
+                className={`relative lg:sticky lg:top-28 rounded-2xl sm:rounded-[32px] p-5 sm:p-8 lg:p-12 mb-8 sm:mb-14 lg:mb-28 min-h-0 lg:min-h-[500px] shadow-xl lg:shadow-[0_20px_50px_rgba(0,0,0,0.3)] border ${article.theme.cardBg} ${article.theme.textColor} ${article.theme.borderColor} transition-all duration-300 group flex flex-col justify-between`}
                 style={{
                   zIndex: idx + 1
                 }}

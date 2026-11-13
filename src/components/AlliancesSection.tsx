@@ -75,25 +75,25 @@ export default function AlliancesSection() {
   const [showAllClients, setShowAllClients] = useState(false);
 
   return (
-    <section id="alliances" className="relative w-full bg-white py-16 sm:py-24 border-b border-slate-200">
-      <div className="mx-auto max-w-[1440px] px-4 sm:px-8">
+    <section id="alliances" className="relative w-full bg-white py-14 sm:py-20 lg:py-24 border-b border-slate-200">
+      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl pb-10 border-b border-slate-200">
+        <div className="max-w-3xl pb-8 sm:pb-10 border-b border-slate-200">
           <div className="inline-flex items-center gap-2 rounded bg-blue-50 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#0a3d91] mb-3 border border-blue-200/60">
             <Globe2 className="h-3.5 w-3.5 text-[#0a3d91]" />
             <span>Global Technical Consortium</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[#1f1d1d]">
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[#1f1d1d]">
             Alliances Beyond Borders
           </h2>
-          <p className="mt-3 text-base text-[#3f3b3c] leading-relaxed">
+          <p className="mt-3 text-sm sm:text-base text-[#3f3b3c] leading-relaxed">
             Collaborating with world-class specialists and international centers of excellence to deliver cutting-edge technology, knowledge transfer, and Japanese operational rigor.
           </p>
         </div>
 
         {/* World Map Container */}
-        <div className="mt-10 relative w-full rounded-2xl border border-slate-200 bg-white p-4 sm:p-8 lg:p-10 shadow-sm">
-          {/* Intrinsic Map Canvas - Exact 1024/410 aspect ratio with NO letterboxing or height drift */}
+        <div className="mt-8 sm:mt-10 relative w-full rounded-2xl border border-slate-200 bg-white p-3 sm:p-6 lg:p-10 shadow-sm">
+          {/* Intrinsic Map Canvas */}
           <div className="relative w-full overflow-visible">
             <Image
               src="/images/clean-world-map.png"
@@ -112,11 +112,11 @@ export default function AlliancesSection() {
               let alignmentClasses = "left-1/2 -translate-x-1/2";
               let arrowClasses = "left-1/2 -translate-x-1/2";
               if (pin.tooltipAlign === "left") {
-                alignmentClasses = "left-0 translate-x-[-15%]";
-                arrowClasses = "left-[25%]";
+                alignmentClasses = "left-0 translate-x-[-10%]";
+                arrowClasses = "left-[20%]";
               } else if (pin.tooltipAlign === "right") {
-                alignmentClasses = "right-0 translate-x-[15%]";
-                arrowClasses = "right-[75%]";
+                alignmentClasses = "right-0 translate-x-[10%]";
+                arrowClasses = "right-[80%]";
               }
 
               return (
@@ -129,26 +129,26 @@ export default function AlliancesSection() {
                   className="absolute -translate-x-1/2 -translate-y-full z-20 cursor-pointer group"
                   onMouseEnter={() => setHoveredPinId(pin.id)}
                   onMouseLeave={() => setHoveredPinId(null)}
-                  onClick={() => setHoveredPinId(pin.id)}
+                  onClick={() => setHoveredPinId(hoveredPinId === pin.id ? null : pin.id)}
                 >
                   {/* Radar Pulse on Active/Hovered Pin */}
                   {isHovered && (
-                    <span className="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2 w-8 h-8 rounded-full bg-blue-500/35 animate-ping pointer-events-none" />
+                    <span className="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-blue-500/35 animate-ping pointer-events-none" />
                   )}
 
-                  {/* Pin Body (Custom Blue Teardrop with White Center) */}
+                  {/* Pin Body */}
                   <div
                     className={`relative transition-transform duration-300 ${
                       isHovered ? "scale-125 -translate-y-1" : "hover:scale-115"
                     }`}
                   >
                     <svg
-                      width="30"
-                      height="40"
+                      width="24"
+                      height="32"
                       viewBox="0 0 32 44"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
-                      className="drop-shadow-md"
+                      className="drop-shadow-md sm:w-[28px] sm:h-[38px]"
                     >
                       <path
                         d="M16 0C7.16344 0 0 7.16344 0 16C0 27.5 16 44 16 44C16 44 32 27.5 32 16C32 7.16344 24.8366 0 16 0Z"
@@ -160,17 +160,17 @@ export default function AlliancesSection() {
                     </svg>
                   </div>
 
-                  {/* Hover Information Tooltip Card */}
+                  {/* Hover/Tap Information Tooltip Card */}
                   <div
-                    className={`absolute bottom-full mb-2.5 ${alignmentClasses} z-40 whitespace-nowrap rounded-xl border border-slate-200/90 bg-white/95 px-4 py-3 shadow-xl backdrop-blur-md transition-all duration-200 ${
+                    className={`absolute bottom-full mb-2 ${alignmentClasses} z-40 whitespace-nowrap rounded-xl border border-slate-200/90 bg-white/98 px-3.5 py-2.5 sm:px-4 sm:py-3 shadow-xl backdrop-blur-md transition-all duration-200 ${
                       isHovered
                         ? "opacity-100 scale-100 pointer-events-auto"
                         : "opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto"
                     }`}
                   >
                     {/* Flag + Country Name */}
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <div className="relative h-4 w-6 rounded-xs overflow-hidden border border-slate-200 shadow-2xs">
+                    <div className="flex items-center gap-1.5 mb-1">
+                      <div className="relative h-3.5 w-5 rounded-xs overflow-hidden border border-slate-200 shadow-2xs">
                         <Image
                           src={pin.flag}
                           alt={`${pin.country} flag`}
@@ -178,24 +178,24 @@ export default function AlliancesSection() {
                           className="object-cover"
                         />
                       </div>
-                      <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                      <span className="text-[10px] sm:text-[11px] font-bold text-slate-400 uppercase tracking-wider">
                         {pin.country}
                       </span>
                     </div>
 
                     {/* Person / Partner Name (Bold) */}
-                    <div className="text-[14px] sm:text-[15px] font-bold text-slate-900 leading-snug">
+                    <div className="text-[13px] sm:text-[15px] font-bold text-slate-900 leading-snug">
                       {pin.name}
                     </div>
 
                     {/* Small Info / Organization (Subtext) */}
-                    <div className="text-[12px] sm:text-[13px] text-slate-600 font-medium mt-0.5">
+                    <div className="text-[11px] sm:text-[12px] text-slate-600 font-medium mt-0.5">
                       {pin.subtext}
                     </div>
 
                     {/* Downward Arrow Pointer */}
                     <div
-                      className={`absolute top-full ${arrowClasses} w-0 h-0 border-x-6 border-x-transparent border-t-6 border-t-white`}
+                      className={`absolute top-full ${arrowClasses} w-0 h-0 border-x-5 border-x-transparent border-t-5 border-t-white`}
                     />
                   </div>
                 </div>
@@ -204,22 +204,49 @@ export default function AlliancesSection() {
           </div>
 
           {/* Quick Helper Text */}
-          <div className="mt-4 text-center text-xs text-slate-400 font-medium">
-            Hover over any country pin on the map to view international alliance details.
+          <div className="mt-3 text-center text-[11px] sm:text-xs text-slate-400 font-medium">
+            Tap or hover over any pin to view international alliance details.
+          </div>
+
+          {/* Mobile Alliance Cards Carousel / List (Visible on < lg screens for optimal mobile touch usability) */}
+          <div className="mt-6 pt-5 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 lg:hidden gap-3">
+            {alliancePins.map((pin) => (
+              <div
+                key={`mobile-${pin.id}`}
+                className="flex items-center gap-3 p-3 rounded-xl border border-slate-200 bg-slate-50/70"
+              >
+                <div className="relative h-6 w-9 rounded-sm overflow-hidden border border-slate-200 shrink-0 shadow-2xs">
+                  <Image
+                    src={pin.flag}
+                    alt={`${pin.country} flag`}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="min-w-0">
+                  <div className="text-xs font-bold text-slate-900 truncate">
+                    {pin.name}
+                  </div>
+                  <div className="text-[11px] text-slate-500 truncate">
+                    {pin.country} • {pin.subtext}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
         {/* Manufacturing & Corporate Client Partners Section */}
-        <div className="mt-20 pt-12 border-t border-slate-200">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-8">
+        <div className="mt-14 sm:mt-20 pt-10 sm:pt-12 border-t border-slate-200">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 sm:pb-8">
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-[#0a3d91]">
                 Trusted by Industry Leaders
               </span>
-              <h3 className="mt-1 text-2xl sm:text-3xl font-extrabold text-slate-900">
+              <h3 className="mt-1 text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900">
                 Manufacturing & Corporate Client Partners
               </h3>
-              <p className="mt-2 text-sm text-slate-600 max-w-xl">
+              <p className="mt-2 text-xs sm:text-sm text-slate-600 max-w-xl">
                 Serving leading automotive tier-1s, steel fabrication mills, heavy engineering, and process manufacturing corporations.
               </p>
             </div>
@@ -227,7 +254,7 @@ export default function AlliancesSection() {
             <button
               type="button"
               onClick={() => setShowAllClients(!showAllClients)}
-              className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-2 text-xs font-bold uppercase tracking-wider text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-2xs"
+              className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 sm:px-5 py-2 text-xs font-bold uppercase tracking-wider text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-2xs self-start sm:self-auto cursor-pointer"
             >
               <span>{showAllClients ? "Show Compact View" : "View All 41+ Clients"}</span>
               <ArrowRight className="h-3.5 w-3.5" />
@@ -236,18 +263,18 @@ export default function AlliancesSection() {
 
           {/* Marquee Carousel (Default View) */}
           {!showAllClients && (
-            <div className="relative overflow-hidden py-8 sm:py-10 border-y border-slate-200/80 bg-slate-50/60 rounded-2xl [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]">
-              <div className="animate-marquee flex items-center gap-6 sm:gap-8">
+            <div className="relative overflow-hidden py-6 sm:py-10 border-y border-slate-200/80 bg-slate-50/60 rounded-2xl [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]">
+              <div className="animate-marquee flex items-center gap-4 sm:gap-8">
                 {clientLogos.map((client, index) => (
                   <div
                     key={`${client.id}-${index}`}
-                    className="relative h-[135px] sm:h-[150px] w-64 sm:w-72 lg:w-80 shrink-0 bg-white rounded-2xl border border-black/[0.08] px-7 py-4 shadow-[0_4px_16px_rgba(0,0,0,0.06)] flex items-center justify-center transition-all duration-[450ms] ease-out hover:shadow-[0_10px_25px_rgba(0,0,0,0.1)] hover:border-[#0a3d91]/40 hover:-translate-y-1.5 group"
+                    className="relative h-[110px] sm:h-[140px] lg:h-[150px] w-52 sm:w-72 lg:w-80 shrink-0 bg-white rounded-2xl border border-black/[0.08] px-4 sm:px-7 py-3 sm:py-4 shadow-[0_4px_16px_rgba(0,0,0,0.06)] flex items-center justify-center transition-all duration-[450ms] ease-out hover:shadow-[0_10px_25px_rgba(0,0,0,0.1)] hover:border-[#0a3d91]/40 hover:-translate-y-1.5 group"
                   >
                     <Image
                       src={`/images/clients/${client.file}`}
                       alt={client.alt}
                       fill
-                      className="object-contain p-3 sm:p-4 transition-transform duration-[450ms] group-hover:scale-105"
+                      className="object-contain p-2.5 sm:p-4 transition-transform duration-[450ms] group-hover:scale-105"
                       loading="lazy"
                     />
                   </div>
@@ -256,13 +283,13 @@ export default function AlliancesSection() {
                 {clientLogos.map((client, index) => (
                   <div
                     key={`dup-${client.id}-${index}`}
-                    className="relative h-[135px] sm:h-[150px] w-64 sm:w-72 lg:w-80 shrink-0 bg-white rounded-2xl border border-black/[0.08] px-7 py-4 shadow-[0_4px_16px_rgba(0,0,0,0.06)] flex items-center justify-center transition-all duration-[450ms] ease-out hover:shadow-[0_10px_25px_rgba(0,0,0,0.1)] hover:border-[#0a3d91]/40 hover:-translate-y-1.5 group"
+                    className="relative h-[110px] sm:h-[140px] lg:h-[150px] w-52 sm:w-72 lg:w-80 shrink-0 bg-white rounded-2xl border border-black/[0.08] px-4 sm:px-7 py-3 sm:py-4 shadow-[0_4px_16px_rgba(0,0,0,0.06)] flex items-center justify-center transition-all duration-[450ms] ease-out hover:shadow-[0_10px_25px_rgba(0,0,0,0.1)] hover:border-[#0a3d91]/40 hover:-translate-y-1.5 group"
                   >
                     <Image
                       src={`/images/clients/${client.file}`}
                       alt={client.alt}
                       fill
-                      className="object-contain p-3 sm:p-4 transition-transform duration-[450ms] group-hover:scale-105"
+                      className="object-contain p-2.5 sm:p-4 transition-transform duration-[450ms] group-hover:scale-105"
                       loading="lazy"
                     />
                   </div>
@@ -273,18 +300,18 @@ export default function AlliancesSection() {
 
           {/* Expanded 41 Clients Grid View */}
           {showAllClients && (
-            <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50/80 p-6 sm:p-8">
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 sm:gap-6">
+            <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50/80 p-4 sm:p-6 lg:p-8">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-5 lg:gap-6">
                 {clientLogos.map((client) => (
                   <div
                     key={client.id}
-                    className="relative h-32 sm:h-36 lg:h-[145px] w-full rounded-2xl border border-black/[0.08] bg-white px-6 py-4 shadow-[0_4px_14px_rgba(0,0,0,0.06)] transition-all duration-[450ms] ease-out hover:shadow-[0_10px_25px_rgba(0,0,0,0.1)] hover:border-[#0a3d91]/50 hover:-translate-y-1.5 flex items-center justify-center group"
+                    className="relative h-28 sm:h-36 lg:h-[145px] w-full rounded-2xl border border-black/[0.08] bg-white px-3 sm:px-6 py-2.5 sm:py-4 shadow-[0_4px_14px_rgba(0,0,0,0.06)] transition-all duration-[450ms] ease-out hover:shadow-[0_10px_25px_rgba(0,0,0,0.1)] hover:border-[#0a3d91]/50 hover:-translate-y-1.5 flex items-center justify-center group"
                   >
                     <Image
                       src={`/images/clients/${client.file}`}
                       alt={client.alt}
                       fill
-                      className="object-contain p-2.5 sm:p-3.5 transition-transform duration-[450ms] group-hover:scale-105"
+                      className="object-contain p-2 sm:p-3.5 transition-transform duration-[450ms] group-hover:scale-105"
                       loading="lazy"
                     />
                   </div>
