@@ -14,6 +14,20 @@ import {
   ShieldCheck
 } from "lucide-react";
 
+// FormSubmit recipient email address — change this to any email you wish to receive queries at
+const RECIPIENT_EMAIL = "gcci-enquiry@gcci-india.com";
+
+const gcciServiceOptions = [
+  "TPM Consulting",
+  "Process Automation & SPMs",
+  "AI Vision Inspection",
+  "ERW Steel Tube Mills",
+  "Plant Health Diagnostics",
+  "JIPM Award Preparation",
+  "Executive Training (BTLC)",
+  "Cloud-Based TPM Software"
+];
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     companyName: "",
@@ -25,16 +39,72 @@ export default function ContactPage() {
     message: ""
   });
 
+  const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const toggleService = (service: string) => {
+    setSelectedServices((prev) =>
+      prev.includes(service) ? prev.filter((s) => s !== service) : [...prev, service]
+    );
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
+    setErrorMessage(null);
+
+    const payload = {
+      "Company Name": formData.companyName,
+      "Contact Person": formData.name,
+      "Email": formData.email,
+      "Phone": formData.phone,
+      "Country": formData.country,
+      "Facility Address": formData.address || "Not provided",
+      "Interested Services": selectedServices.length > 0 ? selectedServices.join(", ") : "General Inquiry",
+      "Message": formData.message,
+      "_subject": `New Client Inquiry from ${formData.name || formData.companyName || "GCCI Website"}`,
+      "_template": "table",
+      "_captcha": "false"
+    };
+
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${RECIPIENT_EMAIL}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        setFormData({
+          companyName: "",
+          name: "",
+          email: "",
+          phone: "",
+          country: "India",
+          address: "",
+          message: ""
+        });
+        setSelectedServices([]);
+      } else {
+        const errorData = await response.json().catch(() => null);
+        setErrorMessage(
+          errorData?.message ||
+            "Unable to send message via form service. Please try again or email us directly at " +
+              RECIPIENT_EMAIL
+        );
+      }
+    } catch (err) {
+      console.error("Form submission error:", err);
+      setErrorMessage("Network error. Please verify your internet connection or email us directly.");
+    } finally {
       setLoading(false);
-      setSubmitted(true);
-    }, 600);
+    }
   };
 
   return (
@@ -246,17 +316,52 @@ export default function ContactPage() {
                       </label>
                       <textarea
                         rows={4}
+                        required
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        placeholder="Your Message..."
+                        placeholder="Tell us about your project, facility requirements, or consultation timeline..."
                         className="w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm text-slate-900 focus:border-[#0a3d91] focus:outline-none focus:ring-1 focus:ring-[#0a3d91]"
                       />
                     </div>
 
+                    {/* How Can We Help You - Service Tags */}
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                        HOW CAN WE HELP YOU? (SELECT SERVICES)
+                      </label>
+                      <div className="flex flex-wrap gap-2">
+                        {gcciServiceOptions.map((service) => {
+                          const isSelected = selectedServices.includes(service);
+                          return (
+                            <button
+                              key={service}
+                              type="button"
+                              onClick={() => toggleService(service)}
+                              className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-all cursor-pointer ${
+                                isSelected
+                                  ? "bg-[#0a3d91] text-white shadow-xs font-semibold"
+                                  : "bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200"
+                              }`}
+                            >
+                              {isSelected ? "✓ " : "+ "}
+                              {service}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    {/* Error Banner */}
+                    {errorMessage && (
+                      <div className="rounded-lg bg-red-50 border border-red-200 p-3.5 text-xs text-red-700 font-medium">
+                        {errorMessage}
+                      </div>
+                    )}
+
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full rounded-full bg-[#0a3d91] py-3.5 text-xs font-bold uppercase tracking-wider text-white shadow-md hover:bg-[#082d64] transition-colors disabled:opacity-75"
+                      className="w-full rounded-full bg-[#0a3d91] py-3.5 text-xs font-bold uppercase tracking-wider text-white shadow-md hover:bg-[#082d64] transition-colors disabled:opacity-75 cursor-pointer"
                     >
                       {loading ? "SENDING..." : "SEND MESSAGE"}
                     </button>
