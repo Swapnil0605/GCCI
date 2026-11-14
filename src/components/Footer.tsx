@@ -29,8 +29,9 @@ const servicesList = [
 const quickLinksList = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
-  { label: "Services & Offerings", href: "/#services" },
-  { label: "Global Presence", href: "/#alliances" },
+  { label: "Our Director", href: "/directors" },
+  { label: "Our Journey", href: "/journey" },
+  { label: "Awards & Certifications", href: "/awards" },
   { label: "Gallery & Activities", href: "/gallery" },
   { label: "News & Milestones", href: "/news" },
   { label: "Training Portal (BTLC)", href: "/training-program" },
