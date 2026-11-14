@@ -342,60 +342,6 @@ export default function JapaneseTrainingPage() {
         </div>
       </section>
 
-      {/* ============================================================== */}
-      {/* 5. BOTTOM INDUSTRIAL HERITAGE BANNER                          */}
-      {/* ============================================================== */}
-      <section
-        className="relative w-full bg-[#030919] overflow-hidden flex items-center"
-        style={{ minHeight: "360px" }}
-      >
-        {/* Background Refinery / Plant at Night */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/training/japanese_operational_heritage.png"
-            alt="Japanese Operational Heritage - Night Industrial Excellence"
-            fill
-            unoptimized
-            className="object-cover object-right"
-          />
-        </div>
-
-        {/* High-Contrast Left Gradient Overlay */}
-        <div
-          className="absolute inset-0 z-10 pointer-events-none"
-          style={{
-            background:
-              "linear-gradient(to right, #040c1d 0%, #061433 45%, rgba(6, 20, 51, 0.5) 75%, transparent 100%)"
-          }}
-        />
-
-        {/* Content */}
-        <div className="relative z-20 mx-auto max-w-[1440px] w-full px-4 sm:px-6 lg:px-12 py-12 sm:py-16">
-          <div className="max-w-2xl">
-            <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-extrabold text-white tracking-tight leading-tight">
-              Building excellence through knowledge, discipline and continuous improvement.
-            </h2>
-
-            <div className="w-14 h-[2px] bg-[#1d64d8] my-5" />
-
-            <div className="flex items-start sm:items-center gap-3.5 pt-1">
-              <div className="h-7 w-7 rounded-full bg-blue-600/30 border border-blue-400 text-blue-300 flex items-center justify-center shrink-0 mt-0.5 sm:mt-0 shadow-inner">
-                <ArrowRight className="h-3.5 w-3.5" />
-              </div>
-              <div>
-                <div className="font-mono text-xs font-bold uppercase tracking-wider text-blue-400">
-                  JAPANESE OPERATIONAL HERITAGE
-                </div>
-                <div className="text-xs sm:text-sm text-slate-300 mt-0.5 font-normal">
-                  Mentored by JIPM and JICA TPM/TPS Gurus (Murase San, Prof. Shiba, Furuhashi San &amp; Suzuki
-                  San)
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <CtaSection />
 
       {/* 6. Footer */}

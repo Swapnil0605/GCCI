@@ -104,7 +104,7 @@ export default function ContactPage() {
       setErrorMessage("Network error. Please verify your internet connection or email us directly.");
     } finally {
       setLoading(false);
-    }
+  }
   };
 
   return (
